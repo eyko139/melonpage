@@ -18,4 +18,3 @@ class Todo(db.Model):
     def __repr__(self):
         return "Task: {} - {}".format(self.name, self.task)
 
-hello
