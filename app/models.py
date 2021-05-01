@@ -1,15 +1,18 @@
 from flask import current_app
 import datetime
 from . import db
+from . import login_manager
+
 
 class Roles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, index=True)
     email = db.Column(db.String, unique=True, index=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    password_hash = db.Column(db.Integer, db.ForeignKey('roles.id'))
     def __repr__(self):
         return "User: {}; mail: {}; role: {}".format(self.username, self.email, self.role_id)
 
@@ -31,5 +34,8 @@ class Todo(db.Model):
         return "Task: {} - {}".format(self.name, self.task)
 
 
-#this is even worse
-
+#Flask-login required function to load the currently logged-in user
+#return value must be the user object
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
