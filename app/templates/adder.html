@@ -1,0 +1,98 @@
+  {% from "_render_field.html" import render_field, render_button
+  %} {% extends "base.html" %} {% block head %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-success" role="alert">
+                              <h4 class="alert-heading">{{ message }}</h4>
+                                                      <script> 
+                                                        function mom() {
+                                                        var Now = moment().format("LLL");
+                                                        var eDisplayMoment = document.getElementById("displayMoment").innerHTML = Now;
+                                                            }
+                                                     </script>
+                                        <div class="{{ category }}"><body onload="mom()"><span id="displayMoment"></span>
+                                      <p class="mb-0"> Click <a href="{{ url_for('main.list') }}">here</a> to see all the active Todos.</p>
+
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+                </div>
+                {% endblock %}
+{% block body %}
+  <div class="container pt-5">
+    <form method="post">
+      <div class="form-group">
+        {{ form.csrf_token }} {{ render_field(form.name, rows="3",
+        placeholder="Input Task name") }} {{
+        render_field(form.task, placeholder="Input task description") }}
+        <div class="row">
+          <div class="col">
+            <div class="form-group form-inline">
+              <label for="due_date" class=
+              "col-sm-2 col-form-label">Deadline</label>
+              <meta name="viewport" content=
+              "width=device-width, initial-scale=1">
+              <script src=
+              "https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js"
+              type="text/javascript"></script>
+              <link href=
+              "https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
+              rel="stylesheet" type="text/css"><input id=
+              "datepicker" width="dvice-width" name="end_time"> 
+              <script>
+              $('#datepicker').datepicker({
+              uiLibrary: 'bootstrap5'
+              });
+              </script>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group form-inline-sm-2">
+              <label for="timepick&quot;" class=
+              "col-md-5 col-form-label">Due time</label>
+              <input type="text" name="timepick" id=
+              "input.timepicker" class="timepicker form-control"> 
+              <script>
+
+                        $(document).ready(function(){
+                            $('input.timepicker').timepicker({dynamic: false,
+              dropdown: true,
+              scrollbar: true,
+              timeFormat: "HH:mm"
+              });
+                        });
+              </script>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="urgency" class=
+              "col-sm-2 col-form-label">Urgency</label>
+              <div class="col-lg">
+                <select name="urgency" id="urgency" class=
+                "form-control">
+                  <option>
+                    High
+                  </option>
+                  <option>
+                    Medium
+                  </option>
+                  <option>
+                    Low
+                  </option>
+                  <option>
+                    Feels good man!
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<div class="container pt-5">
+{{ form.submit(class_="btn btn-primary col-lg-5") }}
+</div>
+    </form>
+          {% endblock %}

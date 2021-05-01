@@ -1,0 +1,12 @@
+                        <script>
+                                function time_converter() {
+                                var a = "{{current_time}}"
+                                var utc = moment.utc(a).toDate();
+                                const local = moment(utc).local().format("YYYY-MM-DD HH:MM")
+                                document.getElementById("local_time").innerHTML = local;
+                                console.log(local)
+                                                                }
+                        </script>
+<body onload="time_converter()">
+        <h1>The converted time is:" <span id="local_time"></span></h1>
+</body>

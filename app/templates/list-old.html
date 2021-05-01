@@ -1,0 +1,46 @@
+  <style>
+
+  .my-container {
+        border: px solid green;
+        margin: 10px;
+  }
+  </style>
+{% extends "base.html" %} {% block body %}
+<div class="container pt-5">
+    <h1 class="text-center">Active todos</h1>
+  </div>{% for todo in todos %}
+  <div class="container">
+    <div class="list-group">
+            <div class="list-group-item">
+      <h1 class="bg-light">
+              <div class="row justify-content-between">
+                <div class="col-5">
+                  {{ todo.name }}
+                </div>
+                <div class="col-3">
+                        <h5> 
+                                {% if todo.urgency == "Urgent!" %}
+                                Urgency: {{ todo.urgency }}
+                                {% endif %}
+                        </h5>
+                </div>
+              </div>
+
+      </h1>
+      <div class="row">
+        <div class="col-9">
+          <p>{{ todo.task }}</p>
+        </div>
+        <div class="col-3">
+          {{ moment(todo.end_time, local=True).fromNow(true, refresh=True) }} remaining<small><br>
+          <p><span class="float-right">Due at: {{ moment(todo.end_time, local=True).format("LLL") }}<br>
+          Added {{ moment(todo.start_time, local=True).format("LLL") }}<br>
+          ({{ moment(todo.start_time, local=True).fromNow(refresh=True) }})<br></small></span></p>
+          <form method="post">
+            <small><button type="button" class="btn btn-danger" name="delete" value="{{ todo.name }}">Delete</button> <button type="button" class="btn btn-success" name="done" value="{{ todo.name }}">Done</button></small>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>{% endfor %} {% endblock %}

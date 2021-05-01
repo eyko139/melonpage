@@ -1,0 +1,39 @@
+{% from "_render_field.html" import render_field, render_button %}
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Melons Todo List{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+{% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('home') }}">Melons<br>Todo</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="url_for("home")">Home (Overview)</a></li>
+      <li><a href="url_for("adder"">Add Todo</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{% block content %}
+<div>
+        <h1>Current todos</h1>
+</div>
+<h2> Add new todos here </h2>
+<div class="container theme-showcase">
+<form method="POST">
+        {{ form.csrf_token }}
+        {{ render_field(form.name, rows="3", placeholder="Input Task name") }}
+        {{ render_field(form.task, placeholder="Input task description") }}
+        {{ form.submit(class_="btn btn-primary col-sm-12") }}
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<form method= post enctype="multipart/form-data"> 
+  <div class="form-group">
+    <label for="upload">Upload receipts</label>
+    <input type="file" class="form-control-file" name="fileupload"> 
+    <button type = submit class="btn btn-success" name="uploadbutton" value="submit">Upload</button>
+  </div>
+</form>
+    {% for file in files %}
+    <div class="container">
+      <div class="list-group">
+        <div class="list-group-items">
+          <p>{{ file }}i</p>
+          <img src="{{ url_for('static', filename="receipts/"+file) }}" style="width: 500px">
+          <form method="post">
+            <button type="submit" class="btn btn-danger btn-sm" name="delete" value="{{ file }}">Delete</button> 
+            <button type="submit" class="btn btn-success btn-sm font-size:1rem" name="done" value="{{ file }}">Done</button>
+          </form> 
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

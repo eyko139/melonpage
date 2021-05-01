@@ -1,0 +1,15 @@
+{% macro time_converter(time) %}
+                <script type="text/javascript">
+                        var a = "{{time}}"
+                        var utc = moment.utc(a).toDate();
+                        var local = moment.utc(utc).local().format("YYYY-MM-DD HH:MM")
+                </script>
+<body>
+        <p>
+        The time is
+        <script type="text/javascript">
+                document.write(local)
+        </script>
+        </p>
+</body>
+{% endmacro %}
