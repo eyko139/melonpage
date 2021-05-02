@@ -15,6 +15,7 @@ class Todo(db.Model):
     completion_time = db.Column(db.DateTime(timezone=True))
     #insert onupdate current_timestamp
     #due_date = db.Column(db.Date, nullable=True)
+    newcol = db.Column(db.String(128))
     def __repr__(self):
         return "Task: {} - {}".format(self.name, self.task)
 
