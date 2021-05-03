@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 {% block body %}
 
-<h1>hello</h1>
-
+<div class="container">
+    <h1>Login</h1>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="email">Email adress</label>
+            <input type="email" class="form-control" name="user_mail" id="user_mail" placeholder="Enter email">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Enter password">
+        </div>
+        <div>
+            <input type="checkbox" class="form-check-input" id="keep_user">
+            <label for="form-check-label" for="keep_user">Keep me logged in</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 {% endblock %}

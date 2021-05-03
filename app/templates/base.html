@@ -41,6 +41,17 @@
                                         <li class="nav-item">
                                           <a href="{{ url_for("main.upload") }}" class="nav-link">Upload</a></li>
                                 </ul>
+                                <ul class="navbar-nav navbar-right">
+                                    {% if current_user.is_authenticated %}
+                                    <li class="nav-item">
+                                        <a href="{{ url_for("auth.logout") }}" class="nav-link">Logout</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="nav-item">
+                                        <a href="{{ url_for("auth.login") }}" class="nav-link">Login</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
                     </div>
         </nav>
 
