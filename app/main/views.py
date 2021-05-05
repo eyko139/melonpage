@@ -7,6 +7,8 @@ from .forms import SubmitForm
 from ..models import Todo
 from datetime import datetime
 from .. import moment
+from flask_login import login_required
+from ..models import User
 
 UPLOAD_FOLDER = "~/Projects"
 ALLOWED_EXTENSIONS = {"png", "jpeg", "jpg"}
@@ -16,6 +18,7 @@ ALLOWED_EXTENSIONS = {"png", "jpeg", "jpg"}
 def index():
     return render_template("index.html", current_time=datetime.utcnow().strftime("%Y-%m-%d %H:%M"))
 @main.route("/adder", methods = ["GET", "POST"])
+@login_required
 def adder():
     form = SubmitForm()
     if form.validate_on_submit():
@@ -38,6 +41,7 @@ def adder():
 
 
 @main.route("/list", methods = ["GET", "POST"])
+@login_required
 def list():
     todos=Todo.query.all()
 
@@ -51,7 +55,7 @@ def list():
         if request.form.get("done"):
                 finished_todo = Todo.query.filter_by(id=request.form["done"]).first()
                 finished_todo.status = True
-                finished_todo.completion_time = datetime.now()
+                finished_todo.completion_time = datetime.now() 
                 db.session.commit()
                 flash("Finished Todo")
                 return redirect(url_for("main.list"))
@@ -59,6 +63,7 @@ def list():
     return render_template("list.html", todos=todos, current_time=datetime.utcnow()) 
 
 @main.route("/completed", methods = ["GET", "POST"])
+@login_required
 def completed():
     todos = Todo.query.all()
     if request.method == "POST":
@@ -72,10 +77,12 @@ def completed():
     return render_template("completed.html", todos=todos)
 
 @main.route("/finance", methods = ["GET", "POST"])
+@login_required
 def finance():
     return render_template("finance.html")
 
 @main.route("/upload", methods = ["GET", "POST"])
+@login_required
 def upload():
     if request.method == "POST":
         file = request.files["fileupload"]
@@ -85,3 +92,8 @@ def upload():
     files = os.listdir("app/static/receipts")
     return render_template("upload.html", files=files)
 
+@main.route("/user/<username>")
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template("user.html", user=user)

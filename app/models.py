@@ -4,6 +4,7 @@ import datetime
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import login_manager
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 class Role(db.Model):
     __tablename__ = "roles"
@@ -20,6 +21,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(128), unique=True, index=True)
     role_id = db.Column(db.Integer, db.ForeignKey("roles.id"))
     password_hash = db.Column(db.String(128))
+    confirmed = db.Column(db.Boolean, default=False)
+    member_since = db.Column(db.DateTime(), default=datetime.datetime.now)
+    about_me = db.Column(db.Text())
 
     def __repr__(self):
         return "User:{}, email: {}, role: {}".format(self.username, self.email, self.role_id)
@@ -37,6 +41,22 @@ class User(UserMixin, db.Model):
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+
+    def generate_confirmation_token(self, expiration=3600):
+        s = Serializer(current_app.config["SECRET_KEY"], expiration)
+        return s.dumps({"confirm": self.id}).decode("utf-8")
+
+    def confirm(self, token):
+        s = Serializer(current_app.config["SECRET_KEY"])
+        try:
+            data = s.loads(token.encode("utf-8"))
+        except:
+            return False
+        if data.get("confirm") != self.id:
+            return False
+        self.confirmed = True
+        db.session.add(self)
+        return True
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
