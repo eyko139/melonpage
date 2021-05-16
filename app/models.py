@@ -16,6 +16,7 @@ class Role(db.Model):
         return "{}".format(self.name)
     
 class User(UserMixin, db.Model):
+    __tablename__= "users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128), unique=True, index=True)
     email = db.Column(db.String(128), unique=True, index=True)
@@ -24,7 +25,8 @@ class User(UserMixin, db.Model):
     confirmed = db.Column(db.Boolean, default=False)
     member_since = db.Column(db.DateTime(), default=datetime.datetime.now)
     about_me = db.Column(db.Text())
-
+    posts = db.relationship("Post", backref="author", lazy="dynamic")
+    
     def __repr__(self):
         return "User:{}, email: {}, role: {}".format(self.username, self.email, self.role_id)
     @property
@@ -77,4 +79,12 @@ class Todo(db.Model):
 
 
 #this is even worse
-
+class Post(db.Model):
+    __tablename__ = "posts"
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.datetime.now)
+    author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    
+    def __repr__(self):
+        return "Post_id: {}, Author: {}, Body: {}".format(self.id, self.author_id, self.body)

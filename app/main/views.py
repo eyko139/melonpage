@@ -4,10 +4,10 @@ from werkzeug.utils import secure_filename
 from .. import db
 from . import main
 from .forms import SubmitForm
-from ..models import Todo
+from ..models import Todo, Post
 from datetime import datetime
 from .. import moment
-from flask_login import login_required
+from flask_login import login_required, current_user
 from ..models import User
 
 UPLOAD_FOLDER = "~/Projects"
@@ -44,7 +44,7 @@ def adder():
 @login_required
 def list():
     todos=Todo.query.all()
-
+    posts = Post.query.all()
     if request.method == "POST":
         if request.form.get("delete"):
                 will_delete = Todo.query.filter_by(id=request.form["delete"]).first()
@@ -57,10 +57,19 @@ def list():
                 finished_todo.status = True
                 finished_todo.completion_time = datetime.now() 
                 db.session.commit()
-                flash("Finished Todo")
+                flash("Finished Todo", "completed")
                 return redirect(url_for("main.list"))
 
-    return render_template("list.html", todos=todos, current_time=datetime.utcnow()) 
+        if "post_comment" in request.form:
+                post = Post(body=request.form["comment_body"],
+                            author=current_user._get_current_object())
+                db.session.add(post)
+                db.session.commit()
+                flash("Added comment", "add")
+                return redirect(url_for("main.list"))
+        
+
+    return render_template("list.html", todos=todos, current_time=datetime.utcnow(), posts=posts) 
 
 @main.route("/completed", methods = ["GET", "POST"])
 @login_required
