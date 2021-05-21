@@ -61,6 +61,7 @@ class User(UserMixin, db.Model):
         return True
 
 class Todo(db.Model):
+    __tablename__ = "todos"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, index=True, unique = False)
     task = db.Column(db.String(128), index = True, unique = False)
@@ -74,6 +75,7 @@ class Todo(db.Model):
     #insert onupdate current_timestamp
     #due_date = db.Column(db.Date, nullable=True)
     newcol = db.Column(db.String(128))
+    todo_post = db.relationship("Post", backref = "comment", lazy="dynamic")
     def __repr__(self):
         return "Task: {} - {}".format(self.name, self.task)
 
@@ -85,6 +87,7 @@ class Post(db.Model):
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.datetime.now)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    related_todo = db.Column(db.Integer, db.ForeignKey("todos.id"))
     
     def __repr__(self):
         return "Post_id: {}, Author: {}, Body: {}".format(self.id, self.author_id, self.body)

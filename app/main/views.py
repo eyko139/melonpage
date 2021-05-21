@@ -62,7 +62,8 @@ def list():
 
         if "post_comment" in request.form:
                 post = Post(body=request.form["comment_body"],
-                            author=current_user._get_current_object())
+                            author=current_user._get_current_object(),
+                            related_todo=request.form["post_comment"])
                 db.session.add(post)
                 db.session.commit()
                 flash("Added comment", "add")

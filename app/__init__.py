@@ -32,5 +32,8 @@ def create_app(config_name):
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
+    from .covid import covid as covid_blueprint
+    app.register_blueprint(covid_blueprint, url_prefix="/covid")
+
     return app
 

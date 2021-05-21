@@ -40,6 +40,9 @@
                                         </li>
                                         <li class="nav-item">
                                           <a href="{{ url_for("main.upload") }}" class="nav-link">Upload</a></li>
+                                        <li class="nav-item">
+                                          <a href="{{ url_for("covid.stats") }}" class="nav-link">Covid</a>
+                                        </li>
                                 </ul>
                                 <ul class="navbar-nav navbar-right">
                                     {% if current_user.is_authenticated %}

@@ -1,4 +1,4 @@
-#!/home/a/Projects/git-todo/melonpage/bin/python
+#!/home/s/Projects/melonpage/melonpage/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

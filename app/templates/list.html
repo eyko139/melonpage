@@ -117,8 +117,10 @@
             <div class="list-group">
               {% for post in posts %}
                 <div class"list-group-item my-item">
+                  {% if post.comment.id == todo.id %}
                   <h4 class="bg-light">{{ post.author.username }} <span style="font-size: 15px">- {{ post.timestamp.strftime("%d. %b %Y %H:%M") }}</span></h4><br> 
-                  <p> {{ post.body }} </p>
+                  <p> {{ post.body}} </p>
+                  {% endif %}
                 </div>
               {% endfor %}
             </div>
@@ -129,7 +131,7 @@
             <form method="post">
               <div class="mb-3">
                 <textarea class="form-control" name="comment_body" placeholder="Leave a comment"></textarea>
-                <button type="submit" class="btn btn-primary" name="post_comment">Add comment</button>
+                <button type="submit" class="btn btn-primary" name="post_comment" value ="{{ todo.id }}">Add comment</button>
               </div>
             </form>
           </div>
