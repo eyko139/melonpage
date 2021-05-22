@@ -1,7 +1,7 @@
 from flask import request, redirect, url_for, render_template
 from . import covid
 from .covi import Covid
-
+from datetime import datetime
 covid_obj = Covid()
 
 @covid.route("/stats", methods=["GET", "POST"])
@@ -32,6 +32,8 @@ def country(country_name, date):
     obs = covid_obj.get_country_on_date(country_name, date)
     if request.method == "POST":
         selected_date = request.form["country_date"]
+        unprettyfy_time = datetime.strptime(selected_date, "%d. %b %Y")
+        selected_date = datetime.strftime(unprettyfy_time, "%Y-%m-%dT%H:%M:%SZ")
         return redirect(url_for("covid.country",
                                 country_name=country_name,
                                 date=selected_date))

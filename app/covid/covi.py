@@ -64,8 +64,8 @@ class Covid:
         date_list = []
         for obs in res:
             #cant prettyfiy date here, gets parsed to the view fucntion
-            # pretty_time = datetime.strptime(obs["Date"], "%Y-%m-%dT%H:%M:%SZ")
-            # obs["Date"] = pretty_time.strftime("%d. %b %Y")
+            pretty_time = datetime.strptime(obs["Date"], "%Y-%m-%dT%H:%M:%SZ")
+            obs["Date"] = pretty_time.strftime("%d. %b %Y")
             date_list.append(obs["Date"])
 
         return date_list[::-1]
