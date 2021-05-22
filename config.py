@@ -19,9 +19,11 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI  = os.getenv("DATABASE_URL") #or "sqlite:///" + os.path.join(basedir, "bibi.db")
+    SQLALCHEMY_DATABASE_URI  = os.getenv("DATABASE_URL") or "sqlite:///" + os.path.join(basedir, "bibi.db")
     if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
-        SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
+        SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
+    else:
+        pass
 
 class TestingConfig(Config):
     TESTING = True
@@ -29,7 +31,7 @@ class TestingConfig(Config):
 
 class DeploymentConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = "postgresql://localhost/melondb"
 
 
 
@@ -38,5 +40,5 @@ config = {
         "development": DevelopmentConfig,
         "default": DevelopmentConfig,
         "testing": TestingConfig,
-        "DeploymentConfig": DeploymentConfig,
+        "deployment": DeploymentConfig,
         }
