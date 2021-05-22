@@ -18,7 +18,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI  = os.getenv("DATABASE_URL") or "sqlite:///" + os.path.join(basedir, "bibi.db")
+    SQLALCHEMY_DATABASE_URI  = os.getenv("DATABASE_URL").replace("://", "ql://", 1) or "sqlite:///" + os.path.join(basedir, "bibi.db")
 
 class TestingConfig(Config):
     TESTING = True
