@@ -24,6 +24,9 @@ class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI  = "sqlite:///" + os.path.join(basedir, "testing.db")
 
+class DeploymentConfig(Config):
+    SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
+
 
 
 
@@ -31,4 +34,5 @@ config = {
         "development": DevelopmentConfig,
         "default": DevelopmentConfig,
         "testing": TestingConfig,
+        "DeploymentConfig": DeploymentConfig,
         }

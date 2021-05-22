@@ -2,6 +2,7 @@ import os
 from app import create_app, db
 from app.models import Todo, User, Role, Post
 from flask_migrate import Migrate
+from flask_migrate import upgrade
 
 app = create_app(os.getenv("FLASK_CONFIG") or "default")
 migrate = Migrate(app, db)
@@ -10,9 +11,9 @@ migrate = Migrate(app, db)
 def make_shell_context():
     return dict(db=db, Todo=Todo, User=User, Role=Role, Post=Post)
 
-# @manager.command
-# def deploy():
-#     upgrade()
+@manager.command
+def deploy():
+    upgrade()
 
 @app.cli.command()
 def test():
