@@ -11,7 +11,7 @@ migrate = Migrate(app, db)
 def make_shell_context():
     return dict(db=db, Todo=Todo, User=User, Role=Role, Post=Post)
 
-@manager.command
+@app.cli.command()
 def deploy():
     upgrade()
 
