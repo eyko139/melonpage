@@ -1,4 +1,5 @@
 import os
+import re
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
@@ -18,7 +19,9 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI  = os.getenv("DATABASE_URL").replace("://", "ql://", 1) or "sqlite:///" + os.path.join(basedir, "bibi.db")
+    SQLALCHEMY_DATABASE_URI  = os.getenv("DATABASE_URL") #or "sqlite:///" + os.path.join(basedir, "bibi.db")
+    if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+        SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
 class TestingConfig(Config):
     TESTING = True
