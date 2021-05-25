@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#postgresql data base (which shouldnt be stored here in the first place)
+db/
+
 # C extensions
 *.so
 

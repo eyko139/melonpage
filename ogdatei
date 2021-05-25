@@ -1,0 +1,5 @@
+2021-05-23 18:12:00.946 CEST [18123] LOG:  PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 10.2.0, 64-bit startet
+2021-05-23 18:12:00.946 CEST [18123] LOG:  erwarte Verbindungen auf IPv6-Adresse »::1«, Port 5432
+2021-05-23 18:12:00.946 CEST [18123] LOG:  erwarte Verbindungen auf IPv4-Adresse »127.0.0.1«, Port 5432
+2021-05-23 18:12:00.951 CEST [18123] FATAL:  konnte Sperrdatei »/run/postgresql/.s.PGSQL.5432.lock« nicht erstellen: Datei oder Verzeichnis nicht gefunden
+2021-05-23 18:12:00.952 CEST [18123] LOG:  Datenbanksystem ist heruntergefahren

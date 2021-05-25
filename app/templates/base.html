@@ -14,6 +14,14 @@
 
                 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
                 <script src="{{ url_for('static', filename = 'moment.js') }}"></script>
+                <link rel="stylesheet" href="{{ url_for('static', filename='css/mycss.css') }}">
+
+
+<style>
+li .nav-link{
+    color: red;
+}
+</style>
 {% block head %}
 {% endblock %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,13 +35,16 @@
                     <div class="collapse navbar-collapse" id="navbarMenu">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                         <li class="nav-item">
-                                                <a href="{{ url_for("main.adder") }}" class="nav-link">Add Todo</a>
+                                                <a href="{{ url_for("main.adder") }}" class="nav-link"style="color:red;">Add Todo</a>
                                         </li>
                                         <li class="nav-item">
                                                 <a href="{{ url_for("main.list") }}" class="nav-link">Todo List</a>
                                         </li>
                                         <li class="nav-item">
                                                 <a href="{{ url_for("main.completed") }}" class="nav-link">Completed Todos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url_for("main.maos") }}" class="nav-link">Maos</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="{{ url_for("main.finance") }}" class="nav-link">Finance</a>

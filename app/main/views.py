@@ -102,6 +102,15 @@ def upload():
     files = os.listdir("app/static/receipts")
     return render_template("upload.html", files=files)
 
+@main.route("/maos", methods = ["GET", "POST"])
+def maos():
+    return render_template("maos.html")
+
+@main.route("/maos/<mao>", methods = ["GET", "POST"])
+def mao_compare():
+    maos = os.listdir("app/static/pics")
+    return render_template("mao_compare.html")
+
 @main.route("/user/<username>")
 @login_required
 def user(username):

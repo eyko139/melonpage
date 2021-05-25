@@ -20,24 +20,42 @@
 {% block body %}
 <div class="container pt-5">
         <div class="row">
-            <p>hello,</p>
+            <p>Hello,
             {% if current_user.is_authenticated %}
-            {{ current_user }}
+            {{ current_user.username }} </p>
             {% else %}
-            <p>Stranger </p>  
+            Stranger </p>  
             {% endif %}
-<!--<p>The local time {{ current_time }} </p>
-                <script>
-                        function myfunc() {
-                        const m = moment();
-                        document.getElementById("myText").innerHTML = m;
-                        console.log(m);
-                                                }
-                </script>
-                <body onload="myfunc()">
-                <h1>"Current time is:" <span id="myText"></span></h1> 
-                -->
+        </div>
 </div>
+<div class="row" style="border: 1px solid purple;padding:10px;margin:10px">
+    <div class="flex-container" style="border:1px solid red;">
+        <div class="mybox" id="imgbox1" >
+            <a class="overlay" href="{{ url_for("covid.stats") }}">
+                <img class="myimg" src="{{ url_for('static', filename='virus.jpg') }}">
+                <div class="lower-card">
+                    <span >Corona stats</span>
+                    <img src="{{ url_for('static',  filename='next.png') }}"style="height:80%;width:20%;">
+                </div>
+            </a>
+        </div>
+        <div class="mybox" id="imgbox1" >
+            <a class="overlay" href="{{ url_for("main.list") }}">
+                <img class="myimg" src="{{ url_for('static', filename='todo.jpg') }}">
+                <div class="lower-card">
+                    <span>Todo-List</span>
+                    <img src="{{ url_for('static',  filename='next.png') }}"style="height:80%;width:20%;">
+                </div>
+        </div>
+        <div class="mybox" id="imgbox1" >
+            <a class="overlay" href="{{ url_for("main.maos") }}">
+                <img class="myimg" src="{{ url_for('static', filename='mao.jpg') }}">
+                <div class="lower-card">
+                    <span>Maos!</span>
+                    <img src="{{ url_for('static',  filename='next.png') }}"style="height:80%;width:20%;">
+                </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
