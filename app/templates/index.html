@@ -30,7 +30,8 @@
 </div>
 <div class="row" style=padding:10px;margin:10px">
     <div class="flex-container">
-        <div class="mybox" id="imgbox1" >
+        <p id="imgbox5"> hello </p>
+        <div class="mybox" id="imgbox1">
             <a class="overlay" href="{{ url_for("covid.stats") }}">
                 <img class="myimg" src="{{ url_for('static', filename='virus.jpg') }}">
                 <div class="lower-card">
@@ -39,7 +40,7 @@
                 </div>
             </a>
         </div>
-        <div class="mybox" id="imgbox1" >
+        <div class="mybox" id="imgbox2">
             <a class="overlay" href="{{ url_for("main.list") }}">
                 <img class="myimg" src="{{ url_for('static', filename='todo.jpg') }}">
                 <div class="lower-card">
@@ -47,7 +48,7 @@
                     <img src="{{ url_for('static',  filename='next.png') }}"style="height:80%;width:20%;">
                 </div>
         </div>
-        <div class="mybox" id="imgbox1" >
+        <div class="mybox" id="imgbox3" >
             <a class="overlay" href="{{ url_for("main.maos") }}">
                 <img class="myimg" src="{{ url_for('static', filename='mao.jpg') }}">
                 <div class="lower-card">
@@ -57,5 +58,13 @@
         </div>
     </div>
 </div>
+        <script>
+                var todoLink = document.getElementById("imgbox5");
+                todoLink.addEventListener("click", function() {
+                                todoLink.classList.toggle("active");
+                                var swap = document.getElementById("imgbox2");
+                                swap.classList.toggle("hide");
+                            });
+        </script>
 {% endblock %}
 
