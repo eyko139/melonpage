@@ -1,15 +1,33 @@
   <style>
 
   .my-container {
-        border: px solid green;
         margin: 10px;
   }
   .my-small {
           font-size: .700em;
   }
   .my-item {
-          border: 1px solid grey;
+          border: 2px solid #333d4d;
+          border-radius: 5px;
+          margin: 5px;
+
   }
+  .content {
+    max-height: 0;
+    color: white;
+    background-color: #263142;
+    margin: 0 20px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    border-radius: 20px;
+    }
+  .collapsible {
+      min-height: 50px;
+      color: white;
+      background-color: #263142;
+      border-radius: 20px;
+      margin: 0 20px;
+
   </style>
 {% extends "base.html" %} 
 {% block head %}
@@ -61,36 +79,16 @@
 
 
 {% block body %}
-<div class="container pt-5">
+<div class="container">
     <h1 class="text-center">Active todos</h1>
   </div>{% for todo in todos %}
   {% if todo.status == False %}
   <div class="container">
-    <div class="list-group">
-            <div class="list-group-item">
-                  <div class="row">
-                      <h1 class="bg-light">
-                              <div class="row justify-content-between">
-                                <div class="col-5">
-                                  {{ todo.name }}
-                                </div>
-                                <div class="col-3">
-                                        <div class="text-center">
-                                                {% if todo.urgency == "High" %}
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
-  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-</svg>
-                                                {% endif %}
-                                        </div>
-                                </div>
-                              </div>
-
-                      </h1>
-                  </div>
-      <div class="row">
-        <div class"list-group-item my-item">
+    <div class="list-group" >
+        <button type="button" class="collapsible">{{ todo.name }}</button>
+        <div class="content">
+        <div class"my-item" style="padding-left:30px">
           <p>{{ todo.task }}</p>
-        </div>
       </div>
         <div class="row d-flex justify-content-center">
                 <div class="col-3 text-center">
@@ -109,35 +107,54 @@
                                   <button type="submit" class="btn btn-success btn-sm font-size:1rem" name="done" value="{{ todo.id }}">Done</button>
                           </form>
         </div>
-        <div class="row">
-            <h2>Comments</h2>
-        </div>  
-        <div class="row">
-          <div class="container pt-5">
-            <div class="list-group">
-              {% for post in posts %}
-                <div class"list-group-item my-item">
-                  {% if post.comment.id == todo.id %}
-                  <h4 class="bg-light">{{ post.author.username }} <span style="font-size: 15px">- {{ post.timestamp.strftime("%d. %b %Y %H:%M") }}</span></h4><br> 
-                  <p> {{ post.body}} </p>
-                  {% endif %}
+        <div class="comment-row">
+            <div class="comment-container">
+                <div class="row">
+                    <h2>Comments:</h2>
+                </div>  
+                <div class="row">
+                    <div class="container">
+                        <div class="list-group">
+                            {% for post in posts %}
+                            <div class="my-item">
+                                {% if post.comment.id == todo.id %}
+                                <h4>{{ post.author.username }} <span style="font-size: 15px">- {{ post.timestamp.strftime("%d. %b %Y %H:%M") }}</span></h4><br> 
+                                <p> {{ post.body}} </p>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
-              {% endfor %}
+                <div class="row">
+                        <form method="post">
+                                <textarea class="form-control" name="comment_body" placeholder="Leave a comment"style="margin:auto;width:95%"></textarea>
+                                <button type="submit" class="btn btn-primary" name="post_comment" value ="{{ todo.id }}"style="margin:10px 0 10px 17px">Add comment</button>
+                        </form>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="container pt-5">
-            <form method="post">
-              <div class="mb-3">
-                <textarea class="form-control" name="comment_body" placeholder="Leave a comment"></textarea>
-                <button type="submit" class="btn btn-primary" name="post_comment" value ="{{ todo.id }}">Add comment</button>
-              </div>
-            </form>
-          </div>
         </div>
-      </div>
-      </div>
+        </div>
     </div>
-    </div>
-    </div>{% endif %}{% endfor %} {% endblock %}
+  </div>{% endif %}{% endfor %} 
+  </div>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+{% endblock %}

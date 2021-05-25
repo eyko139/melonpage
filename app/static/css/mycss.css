@@ -4,7 +4,7 @@ body {
 }
  .navbar .navbar-nav.navbar-right .dropdown .dropdown-menu{
     background-image: url("../background.jpg");
-    background-position: top;
+    background-position: center;
     background-repeat: no-repeat;
 } 
 .navbar {
@@ -61,3 +61,25 @@ a.overlay {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         text-align: center;
 }
+
+.my-todo {
+    color: white;
+    background-color:#133e85;
+    margin: 20px;
+}
+.comment-row {
+}
+.comment-container{
+    width: 90%;
+    height: 90%;
+    padding: 5px;
+    margin: 10px auto;
+    background-color:#4c6791;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.add-comment {
+    margin:auto;
+}
+
+
