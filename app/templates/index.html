@@ -25,6 +25,8 @@
             {{ current_user.username }} </p>
             {% else %}
             Stranger </p>  
+            <p> Click <a href="{{ url_for("auth.login") }}">here</a> to Login.</p>
+            <p> Click <a href="{{ url_for("auth.register") }}">here</a> to Register.</p>
             {% endif %}
         </div>
 </div>

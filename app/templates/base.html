@@ -9,6 +9,7 @@
                 <title>{% block title %} {% endblock %}</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="{{ url_for('static', filename="mycss.css") }}">
 
 
 
@@ -24,60 +25,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
 <body>
-        <nav class="navbar navbar-dark navbar-expand-lg">
-                <a href="{{ url_for("main.index") }}" class="navbar-brand">MELONS<a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-                    <span class="navbar-toggler-icon mb-2 mb-lg-0"></span>
-                </button>
-                    <div class="collapse navbar-collapse" id="navbarMenu">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                        <li class="nav-item">
-                                                <a href="{{ url_for("main.adder") }}" class="nav-link">Add Todo</a>
-                                        </li>
-                                        <li class="nav-item">
-                                                <a href="{{ url_for("main.list") }}" class="nav-link">Todo List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                                <a href="{{ url_for("main.completed") }}" class="nav-link">Completed Todos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url_for("main.maos") }}" class="nav-link">Maos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url_for("main.finance") }}" class="nav-link">Finance</a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a href="{{ url_for("main.upload") }}" class="nav-link">Upload</a></li>
-                                        <li class="nav-item">
-                                          <a href="{{ url_for("covid.stats") }}" class="nav-link">Covid</a>
-                                        </li>
-                                </ul>
-                                <ul class="navbar-nav navbar-right">
-                                    {% if current_user.is_authenticated %}
-                                    <div class="dropdown">
-                                        <a href="{{ url_for("main.user", username=current_user.username) }}" role="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Account <b class="caret"></b></a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li>
-                                                <a href="{{ url_for("main.user", username=current_user.username) }}" class="dropdown-item">Profile</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url_for("auth.logout") }}" class="dropdown-item">Logout</a>
-                                            </li>
-                                        </ul>
+    <div class="my-container">
+        <div class="topnav">
+                <ul id="navlist">
+                    <li><a href="{{ url_for("main.index") }}" class="brand">L-Page</a></li>
+                        <li>
+                                <a href="{{ url_for("main.adder") }}" class="navlink">Add Todo</a></li>
+                        <li>
+                                <a href="{{ url_for("main.list") }}" class="navlink">Todo List</a></li>
+                        <li>
+                                <a href="{{ url_for("main.completed") }}" class="navlink">Completed Todos</a></li>
+                        <li>
+                            <a href="{{ url_for("main.maos") }}" class="navlink">Maos</a></li>
+                        <li>
+                          <a href="{{ url_for("main.upload") }}" class="navlink">Upload</a></li>
+                        <li>
+                          <a href="{{ url_for("covid.stats") }}" class="navlink">Covid</a></li>
+                        {% if current_user.is_authenticated %}
+                        <li>
+                            <div class="dropdown"id="account">
+                                <button class="dropdownbtn">Account<div class="arrowup"</div></button>
+                                    <div class="dropdowncontent">
+                                        <a href="{{ url_for("main.user", username=current_user.username) }}" >Profile</a>
+                                        <a href="{{ url_for("auth.logout") }}">Logout</a>
                                     </div>
-                                    {% else %}
-                                    <li class="nav-item">
-                                        <a href="{{ url_for("auth.login") }}" class="nav-link">Login</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ url_for("auth.register") }}" class="nav-link">Register</a>
-                                    </li>
-            
-                                    {% endif %}
-                                </ul>
-                    </div>
-        </nav>
+                            </div>
+                        </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ url_for("auth.login") }}" class="navlink">Login</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for("auth.register") }}" class="navlink">Register</a>
+                            </li>
 
+                            {% endif %}
+                        <li>
+                        <div class="hamburger" id="toggler">
+                            <span class="line"></span>
+                            <span class="line2"></span>
+                            <span class="line3"></span>
+                        </div>
+                        </li>
+                    </ul>
+        </div>
+    </div>
+        </nav>
+    </div>
+            <script>
+  var press1 = document.getElementsByClassName("navlink");
+  console.log(press1)
+  for (var i = 0; i < press1.length; i++) {
+      press1[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+      })};
+
+    var toggler = document.getElementById("toggler");
+                toggler.addEventListener("click", function() {
+                var nav = document.getElementById("navlist");
+                nav.classList.toggle("toggled")
+                                });
+
+            </script>
 {% block body %}
 {% endblock %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>

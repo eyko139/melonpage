@@ -73,13 +73,9 @@
   {% endif %}
 {% endwith %}
 </div>
-
 {% endblock %}
 
-
-
 {% block body %}
-<div class="container">
     <h1 class="text-center">Active todos</h1>
   </div>{% for todo in todos %}
   {% if todo.status == False %}
