@@ -33,7 +33,7 @@ def register():
                         password=request.form["userpassword_input"])
             db.session.add(user)
             db.session.commit()
-            flash("Registration successful, check email to confirm account")
+            flash("Registration successful, authentication currently NOT required. You can now login!")
             token = user.generate_confirmation_token()
             send_email(user.email, "Confirm Your Account", "auth/email/confirm", user=user, token=token)
             return redirect(url_for("main.index"))
