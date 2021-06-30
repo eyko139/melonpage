@@ -1,7 +1,7 @@
 Flask Web application 
 
-User functionality:
-  -Register/Login
+User functionality: <br>
+  -Register/Login <br>
   -Postgres database 
   -User permission management
   -User uploads
