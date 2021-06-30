@@ -92,7 +92,6 @@ def finance():
     return render_template("finance.html")
 
 @main.route("/upload", methods = ["GET", "POST"])
-@login_required
 def upload():
     if request.method == "POST":
         file = request.files["fileupload"]
