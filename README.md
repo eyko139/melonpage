@@ -6,7 +6,7 @@ User functionality: <br>
   -User permission management <br>
   -User uploads</br>
   
-Authentification with serializer-tokens sent from Gmail account using Google/Gmail api.</br>
+Authentification with serializer-tokens sent via email.</br>
 
 Up to date corona statistics using WHO-api<br>
 
