@@ -8,7 +8,7 @@ class Config:
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USERNAME = "achgag418@gmail.com"
-    MAIL_PASSWORD = "grag123grag"
+    MAIL_PASSWORD = "g"
     FLASKY_MAIL_SUBJECT_PREFIX = ""
     FLASKY_MAIL_SENDER = "achgag418@gmail.com"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
