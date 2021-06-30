@@ -9,7 +9,7 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = "achgag418@gmail.com"
     MAIL_PASSWORD = "grag123grag"
-    FLASKY_MAIL_SUBJECT_PREFIX = "You added a new task"
+    FLASKY_MAIL_SUBJECT_PREFIX = ""
     FLASKY_MAIL_SENDER = "achgag418@gmail.com"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
