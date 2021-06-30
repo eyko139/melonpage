@@ -3,7 +3,8 @@
                 {% with messages = get_flashed_messages(with_categories=true) %}
                   {% if messages %}
                     {% for category, message in messages %}
-                      <div class="alert alert-success" role="alert">
+                     {% if category != "error" %}
+                      <div class="alert alert-success" style="margin-bottom: 0px" role="alert">
                               <h4 class="alert-heading">{{ message }}</h4>
                                                       <script> 
                                                         function mom() {
@@ -12,9 +13,15 @@
                                                             }
                                                      </script>
                                         <div class="{{ category }}"><body onload="mom()"><span id="displayMoment"></span>
-                                      <p class="mb-0"> Click <a href="{{ url_for('main.list') }}">here</a> to see all the active Todos.</p>
+                                      <p class="mb-0">Click <a href="{{ url_for('main.list') }}">here</a> to see all the active Todos.</p>
 
                       </div>
+                      {% endif %}
+                        {% if category == "error" %}
+                        <div class="alert alert-danger" style="margin-bottom: 0px"role="alert">
+                            <h4 class "alert-heading">{{ message }}</h4> 
+                        </div>
+                        {% endif %}
                     {% endfor %}
                   {% endif %}
                 {% endwith %}

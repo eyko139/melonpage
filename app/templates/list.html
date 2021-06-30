@@ -27,7 +27,7 @@
       background-color: #263142;
       border-radius: 20px;
       margin: 0 20px;
-
+    }
   </style>
 {% extends "base.html" %} 
 {% block head %}
@@ -35,7 +35,7 @@
   {% if messages %}
     {% for category, message in messages %}
     {% if category == "error" %}
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger" style="margin-bottom:0px"role="alert">
               <h4 class="alert-heading">{{ message }}</h4>
                                       <script> 
                                         function mom() {
@@ -46,7 +46,7 @@
       </div>
       {% endif %}
       {% if category == "add" %}
-      <div class="alert alert-success" role="alert">
+      <div class="alert alert-success" style="margin-bottom:0px"role="alert">
               <h4 class="alert-heading">{{ message }}</h4>
                                       <script> 
                                         function mom() {
@@ -57,7 +57,7 @@
       </div>
       {% endif %}
       {% if category == "completed"  %}
-      <div class="alert alert-success" role="alert">
+      <div class="alert alert-success" style="margin-bottom:0px"role="alert">
               <h4 class="alert-heading">{{ message }}</h4>
                                       <script> 
                                         function mom() {

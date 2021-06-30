@@ -1,10 +1,29 @@
 {% extends "base.html" %}
+
+{% block head %}
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+    {% for category, message in messages %}
+    {% if category == "error" %}
+    <div class="alert alert-danger" style="margin-bottom: 0px" role="alert">
+        <h4 class "alert-heading">{{ message }}</h4> 
+    </div>
+    {% endif %}
+    {% if category != "error" %}
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">{{ message }}</h4> 
+    </div>
+    {% endif %}
+    {% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock %}
 {% block body %}
 
-<h1> Current for: total(today)</h1>
+<h1 style="text-align: center">Current total numbers</h1>
   <span>
     <form method="Post">
-      <label for="exampleDataList" class="form-label">Search for country</label>
+      <label style="font-size: 30px;"for="exampleDataList" class="form-label">Search for country</label>
         <input class="form-control" list="datalistOptions" name="country_select" id="exampleDataList" placeholder="Type to search...">
         <datalist id="datalistOptions">
           {% for country in country %}
@@ -12,6 +31,7 @@
           {% endfor %}
     </datalist>
     </form>
+<div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
@@ -29,4 +49,6 @@
     {% endfor %}
   </tr>
 </tbody>
+</div>
+</div>
 {% endblock %}

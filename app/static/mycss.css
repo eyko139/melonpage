@@ -1,132 +1,293 @@
-.my-container {
-    display: grid;
-    grid-template-columns: 20% auto;
-    border: 2px solid orange;
-    grid-auto-rows: fit-content(200px);
+/* Resetting CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    box-sizing: border-box;
 }
-.topnav {
-    border: 2px solid black;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    align-items: start;
-    
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    background-color: #E2E9EF;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* CONTENTS
+ * 1 Main body
+ * 2 Header
+ * 3 Hero
+ * 4 Footer
+ */
+
+/* 1 MAIN */
+main {
+    background-color: white;
+}
+header {
+    display: flex;
+    padding: 50px auto;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    background: rgb(66,88,122);
+    background: radial-gradient(circle, rgba(66,88,122,1) 0%, rgba(60,64,71,1) 42%, rgba(88,94,104,1) 71%, rgba(107,142,199,1) 94%);
+}
+h1, h2, h3 {
+  color: #f5b318;
+  font-family: 'Oswald',sans-serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin: 20px;
+}
+.card-p {
+    color: #f5b318;
+    text-decoration: none;
+}
+.card-p:hover {
+    color: white;
+}
+.mb-0 { /* The coloring for the adder flash messages */
+    color: #0f5132;
+}
+p {
+    color:white;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 20px;
+}
+header p a {
+    color: red;
+    font-weight: bold;
+}
+.index-container {
+    padding: 30px;
+    flex: 1 1 auto;
+}
+
+.my-container {
+    background-color: #336BAB;
 }
 .navbox {
-    border: 2px solid green;
-    background: orange;
-    grid-row-start: 2;
+    background-color: #19212e;
+    height: 90px;
+    transition: height 0.5s ease-in-out;
+}
+#navlist {
+    display: flex;
+    flex-flow: row nowrap;
+    height:100%;
 }
 
 body {
-  margin: 0;
+    margin: 0;
 }
 ul {
-  list-style-type: none;
-  width: 100%;
-  background-color: grey;
-  margin: 0;
-  padding: 0;
-  background-image: url("../static/background.jpg");
-  background-position: center;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-position: center;
+    overflow: hidden;
+    align-items: stretch;
 }
 ul.toggled {
-    flex-direction: column;
 }
 li {
-  overflow: visible;
-  display: flex;
+    overflow: visible;
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: center;
 }
 ul a.brand {
-  font-size: 35px;
-  padding: 22px 40px;
-  letter-spacing: 3px;
+    font-size: 45px;
+    padding: 22px 40px;
+    color: #f5b318;
+    letter-spacing: 5px;
+    font-family: 'Monoton', cursive;
 }
 ul.toggled a.brand {
     border-bottom: 1px solid white;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+.flex-con {
+    display: grid;
+    grid-template-rows: 500px;
+}
+.my-row {
+    background: rgb(66,88,122);
+    background: radial-gradient(circle, rgba(66,88,122,1) 0%, rgba(60,64,71,1) 42%, rgba(88,94,104,1) 71%, rgba(107,142,199,1) 94%);
+    height: 500px;
+    display: flex;
+    align-items: center;
+}
+.my-row2 {
+    background: rgb(81,106,147);
+    background: linear-gradient(90deg, rgba(81,106,147,1) 16%, rgba(25,33,46,1) 48%, rgba(107,142,199,1) 91%); 
+    height: 500px;
+    display: flex;
+    align-items: center;
+}
+.image-container {
+    height: 500px;
+    width: 50%;
+}
+
+.row-img {
+    padding: 20px;
+    display: inline-block;
+    height: 100%;
+    width: 50%;
 }
 
 
 .hamburger {
-   display: block;
-   background: #555; width: 85px; height: 85px; 
-   right: 10px;
-   top: 10px;
-   position: absolute; 
-   margin-left: auto; margin-right: auto;
-   border-radius: 4px; 
-   display: none;
-   opacity: 0.8;
+    display: block;
+    background: #555; width: 85px; height: 78px; 
+    top: 5px;
+    right: 5px;
+    padding: 2px;
+    bottom: 5px;
+    left: 75%;
+    position: absolute; 
+    border-radius: 4px; 
+    display: none;
+    opacity: 0.8;
+}
+.hamburger:active {
+    border: 2px solid #66B2FF;
+    border-radius: 5px;
 }
 .line { 
-   position: absolute; 
-   left:10px;
-   top: 15px;
-   height: 4px; width: 65px; 
-   background: #fff; border-radius: 2px;
-   display: block; 
-   transition: 0.5s; 
-   transform-origin: center; 
+    position: absolute; 
+    left:10px;
+    top: 15px;
+    height: 4px; width: 65px; 
+    background: #fff; border-radius: 2px;
+    display: block; 
+    transition: 0.5s; 
+    transform-origin: center; 
 }
 .line2 { 
-   position: absolute; 
-   left:10px;
-   top: 40px;
-   height: 4px; width: 65px; 
-   background: #fff; border-radius: 2px;
-   display: block; 
-   transition: 0.5s; 
-   transform-origin: center; 
+    position: absolute; 
+    left:10px;
+    top: 38px;
+    height: 4px; width: 65px; 
+    background: #fff; border-radius: 2px;
+    display: block; 
+    transition: 0.5s; 
+    transform-origin: center; 
 }
 .line3 { 
-   position: absolute; 
-   left:10px;
-   bottom:15px;
-   height: 4px; width: 65px; 
-   background: #fff; border-radius: 2px;
-   display: block; 
-   transition: 0.5s; 
-   transform-origin: center; 
+    position: absolute; 
+    left:10px;
+    bottom:15px;
+    height: 4px; width: 65px; 
+    background: #fff; border-radius: 2px;
+    display: block; 
+    transition: 0.5s; 
+    transform-origin: center; 
 }
 @media only screen and (max-width: 600px) {
     ul li:not(:first-child) {display: none;}
-    ul li:last-child {display: block;}
+    /*ul li:last-child {display: block;} */
     .hamburger {
-        display: block 
+        display: inline;
+        position: sticky;
     }
     .line {
         display:block;
     }
 }
 @media only screen and (max-width: 600px) {
-    ul.toggled li:not(:first-child) {display: block;}
-    ul.toggled li:last-child {display: block;}
+    ul.toggled li:not(:first-child) {
+        display: block;
+        display: flex;
+    
+    }
+    /* ul.toggled li:last-child {display: block;} */
+    .my-row, .my-row2 {flex-direction: column}
+    .row-img {max-height:50%; width: 100%}
+    .index-container{padding:10px;}
+    .arrow-right{left: 20px}
+    .navbox.toggled {height: 500px;}
+    #navlist {
+        flex-flow: column nowrap;
+    }
+    .toggled li .dropdownbtn {
+        border: none;
+    }
+    ul a.brand {
+        position: absolute;
+        left: 0px;
+    }
+    ul.toggled a.brand {
+        left: 0px;
+        border: none;
+    }
+    .dropdownbtn:active .dropdowncontent .dropdown-list {
+        max-height: 400px;
+    }
+    .dropdownbtn:active .dropdowncontent {
+      max-height:100%;
+  }
+
 }
  
 
 li a {
   text-decoration: none;
-  font-size: 20px;
-  color: black;
+  font-size: 30px;
+  color: #c9c6bb;
   text-align: center;
-  border-right: 1px solid white;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
 }
-ul.toggled li a {
-    margin-top: 10px;
-    border-bottom: 1px solid white;
-}
-li:nth-last-child(2) {
-  margin-left: auto;
+/*li:nth-last-child(2) {
   border-right: none;
-}
+  position: absolute;
+  right: 0;
+  height: 90px;
+}*/
 ul.toggled li:nth-last-child(2) {
-    margin-right: auto;
+    margin: auto;
+    position: relative;
+    color: white;
+    text-decoration: none;
 }
 li:first-child {
   margin-left: 0;
@@ -137,15 +298,17 @@ li a.active {
   color: white;
 }
 .dropdownbtn {
-  border-left: 1px solid white;
+    padding: 0;
+    width: 227px;
   text-decoration: none;
   height: 100%;
   text-align: center;
-  padding: 16px 16px;
   color: #d4d3cd;
-  background: rgba(0,0,0,.1);
   font-size: 25px;
   outline: 0;
+  border: 0;
+  border-left: 1px solid white;
+  background: inherit;
 }
 ul.toggled .dropdownbtn {
     color: black;
@@ -161,34 +324,44 @@ ul.toggled .dropdown {
 }
 .dropdowncontent {
   display: flex;
-  position: fixed;
-  width: 110px;
+  position: absolute;
+  top: 90px;
+  width: inherit;
   color: black;
-  height: 0;
+  max-height: 0px;
   overflow-y: hidden;
-  transition: height 0.5s ease-in-out;
-  flex-direction: column;
+  transition: max-height 0.5s ease-in-out;
   background-color: rgba(0,0,0,.1);
 }
-.dropdowncontent a {
+.dropdowncontent .dropdown-list {
   display: flex;
   color: black;
   text-decoration: none;
-  height: 0;
-  transition: height 0.5s ease-in-out;
-  padding-left: 27px;
-  align-items: flex-center;
+  max-height: 0px;
+  transition: max-height 0.5s ease-in-out;
+  flex-direction: column;
 }
-#account:hover .dropdowncontent a {
-    height: 100%;
+
+#profile, #logout {
+    all:revert;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    background-color: #336BAB;
+    height: 80px;
 }
-#account:hover .dropdowncontent {
-  height:100px;
+.dropdownbtn:hover .dropdowncontent .dropdown-list {
+    max-height: 400px;
 }
-#account .dropdowncontent a:hover {
-    background-color: rgba(0,0,0,.5);
+.dropdownbtn:hover .dropdowncontent {
+  max-height:100%;
+
 }
-#account:hover .arrowup {
+.dropdownbtn .dropdowncontent #profile:hover, #logout:hover{
+    background-color: rgba(0,0,0,1);
+}
+.dropdownbtn:hover .arrowup {
     animation-play-state: running;
 }
 @keyframes arrowhover {
@@ -212,4 +385,122 @@ ul.toggled .dropdown {
     animation-iteration-count: infinite;
     animation-play-state: paused;
     animation-direction: alternate;
+}
+#todo-arrow {
+	width: 0;
+	height: 0;
+	border-top: 15px solid #d4d3cd;
+	border-right: 15px solid transparent;
+	border-left: 15px solid transparent;
+	position: relative;
+    top: 10px;
+    margin: auto;
+    animation-name: arrowhover;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    animation-direction: alternate;
+}
+
+.mybox {
+    width:30%;
+    max-height:300px;
+    max-width: 600px;
+    padding: 0px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    opacity: 1;
+    transition: max-height 1s;
+    display: flex;
+}
+.mybox.hide {
+    max-height: 0;
+}
+.lower-card {
+    display:flex;
+    height: 30%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #244B78;
+    position:relative;
+    bottom: 2px;
+}
+.arrow-right {
+    height: 0px;
+    position: relative;
+    width: 0px;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 40px solid #FCC358;
+    right: 0px;
+}
+/*.arrow-down {
+    height: 0;
+    width: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid transparent;*/
+
+.myimg {
+    width: 100%;
+    height: 70%;
+}
+a.overlay {
+    text-decoration: none;
+}
+.overlay div span{
+    margin-left: 10%;
+    color: #c9c6bb;
+    font-size: 30px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+@media (max-width: 800px) {
+    .flex-container {
+        flex-direction: column;
+    }
+    .mybox {
+        border: 1px solid green;
+        margin: 20px auto;
+        width:100%;
+        max-height:300px;
+        background-color: white;
+        padding: 0px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        opacity: 1;
+        transition: max-height 1s linear;
+    }
+    .mybox.hide {
+    max-height: 0;
+}
+
+.my-todo {
+    color: white;
+    background-color:#133e85;
+    margin: 20px;
+}
+.comment-row {
+}
+.comment-container{
+    width: 90%;
+    height: 90%;
+    padding: 5px;
+    margin: 10px auto;
+    background-color:#4c6791;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.add-comment {
+    margin:auto;
+}
+.alert.alert-danger {
+    margin-bottom: 0px;
+}
+.login-container{
+    max-width: 500px;
 }

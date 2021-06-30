@@ -18,30 +18,31 @@ ALLOWED_EXTENSIONS = {"png", "jpeg", "jpg"}
 def index():
     return render_template("index.html", current_time=datetime.utcnow().strftime("%Y-%m-%d %H:%M"))
 @main.route("/adder", methods = ["GET", "POST"])
-@login_required
 def adder():
     form = SubmitForm()
     if form.validate_on_submit():
-        urgency = request.form.get("urgency")
-        end_time_str = request.form.get("end_time")
-        due_time = request.form.get("timepick")
-        combined_time = end_time_str + due_time 
+        try:
+            urgency = request.form.get("urgency")
+            end_time_str = request.form.get("end_time")
+            due_time = request.form.get("timepick")
+            combined_time = end_time_str + due_time 
 
-        combined_date = datetime.strptime(combined_time, "%m/%d/%Y%H:%M")
-        
+            combined_date = datetime.strptime(combined_time, "%m/%d/%Y%H:%M")
+            
 
 
 
-        dothat = Todo(name=form.name.data, task=form.task.data, urgency=urgency, starting_time=datetime.utcnow().strftime("%d-%m-%Y %H:%M"), end_time=combined_date)
-        db.session.add(dothat)
-        db.session.commit()
-        flash("Added Todo")
-        return redirect(url_for("main.adder"))
+            dothat = Todo(name=form.name.data, task=form.task.data, urgency=urgency, starting_time=datetime.utcnow().strftime("%d-%m-%Y %H:%M"), end_time=combined_date)
+            db.session.add(dothat)
+            db.session.commit()
+            flash("Added Todo")
+            return redirect(url_for("main.adder"))
+        except:
+            flash("Error with the selected due Time, required format HH:MM", "error")
     return render_template("adder.html", form = form, current_time=datetime.utcnow().strftime("%Y-%m-%d %H:%M"))
 
 
 @main.route("/list", methods = ["GET", "POST"])
-@login_required
 def list():
     todos=Todo.query.all()
     posts = Post.query.all()
@@ -73,7 +74,6 @@ def list():
     return render_template("list.html", todos=todos, current_time=datetime.utcnow(), posts=posts) 
 
 @main.route("/completed", methods = ["GET", "POST"])
-@login_required
 def completed():
     todos = Todo.query.all()
     if request.method == "POST":

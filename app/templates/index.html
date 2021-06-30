@@ -4,12 +4,12 @@
 {% if messages %}
     {% for category, message in messages %}
     {% if category == "error" %}
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" style="margin-bottom: 0px" role="alert">
         <h4 class "alert-heading">{{ mesage }}</h4> 
     </div>
     {% endif %}
     {% if category != "error" %}
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success" style="margin-bottom: 0px" role="alert">
         <h4 class="alert-heading">{{ message }}</h4> 
     </div>
     {% endif %}
@@ -18,48 +18,43 @@
 {% endwith %}
 {% endblock %}
 {% block body %}
-<div class="container pt-5">
-        <div class="row">
-            <p>Hello,
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<main>
+    <!--
+    <header>
+            <h1>Welcome to the Page
             {% if current_user.is_authenticated %}
-            {{ current_user.username }} </p>
+            ,{{ current_user.username }} </p>
             {% else %}
-            Stranger </p>  
+            </p>  
             <p> Click <a href="{{ url_for("auth.login") }}">here</a> to Login.</p>
             <p> Click <a href="{{ url_for("auth.register") }}">here</a> to Register.</p>
             {% endif %}
+    </header>
+    -->
+    <div class="flex-con">
+        <div class="my-row">
+            <img class="row-img"src="{{url_for('static', filename='virus.png') }}">
+            <div class="index-container">
+                <h2 style="display:inline-block"><a class="card-p"href="{{url_for("covid.stats") }}">Corona Statistics</a></h2>
+                <p>- Check out recent statics.<br>- Can be searched by country and date</p>
+                <a class="overlay" href="{{ url_for("covid.stats") }}">
+                    <div class="arrow-right"></div>
+                </a>
+            </div>
         </div>
-</div>
-<div class="row" style=padding:10px;margin:10px">
-    <div class="flex-container">
-        <p id="imgbox5"> hello </p>
-        <div class="mybox" id="imgbox1">
-            <a class="overlay" href="{{ url_for("covid.stats") }}">
-                <img class="myimg" src="{{ url_for('static', filename='virus.jpg') }}">
-                <div class="lower-card">
-                    <span >Corona stats</span>
-                    <img src="{{ url_for('static',  filename='next.png') }}"style="height:80%;width:20%;">
-                </div>
-            </a>
-        </div>
-        <div class="mybox" id="imgbox2">
-            <a class="overlay" href="{{ url_for("main.list") }}">
-                <img class="myimg" src="{{ url_for('static', filename='todo.jpg') }}">
-                <div class="lower-card">
-                    <span>Todo-List</span>
-                    <img src="{{ url_for('static',  filename='next.png') }}"style="height:80%;width:20%;">
-                </div>
-        </div>
-        <div class="mybox" id="imgbox3" >
-            <a class="overlay" href="{{ url_for("main.maos") }}">
-                <img class="myimg" src="{{ url_for('static', filename='mao.jpg') }}">
-                <div class="lower-card">
-                    <span>Maos!</span>
-                    <img src="{{ url_for('static',  filename='next.png') }}"style="height:80%;width:20%;">
-                </div>
+        <div class="my-row2">
+                <img class="row-img" src="{{ url_for('static', filename='todo.png') }}">
+            <div class="index-container">
+                <h2 style="display:inline-block"><a class="card-p"href="{{ url_for("main.list") }}">Todo list</a></h3>
+                <p>- Manage the Todo list.<br>- Add and delete Todos.<br>- Comment on currently active Todos</p>
+                <a class="overlay" href="{{ url_for("main.list") }}">
+                    <div class="arrow-right"></div>
+                </a>
+            </div>
         </div>
     </div>
-</div>
+</main>
         <script>
                 var todoLink = document.getElementById("imgbox5");
                 todoLink.addEventListener("click", function() {

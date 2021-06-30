@@ -4,25 +4,26 @@
 {% if messages %}
     {% for category, message in messages %}
     {% if category == "error" %}
-    <div class="alert alert-danger" role="alert">
+    <div style="margin-bottom: 0px;"class="alert alert-danger" role="alert">
         <h4 class "alert-heading">{{ message }}</h4> 
     </div>
     {% endif %}
     {% if category != "error" %}
-    <div class="alert alert-success" role="alert">
+    <div style="margin-bottom: 0px;"class="alert alert-success" role="alert">
         <h4 class="alert-heading">{{ message }}</h4> 
     </div>
     {% endif %}
     {% endfor %}
 {% endif %}
 {% endwith %}
+<link rel="stylesheet" href="{{ url_for('static', filename="mycss.css") }}">
 {% endblock %}
 {% block body %}
 
-<div class="container">
-    <h1>Login</h1>
-    <form action="" method="post">
-        <div class="form-group">
+<div class="container login-container">
+    <h1 style="text-align: center">Login</h1>
+    <form class="main-form needs-validation" style="max-width: 500px; margin: auto"action="" method="post">
+        <div class="form-group"style="margin: 20px auto;" >
             <label for="email">Email adress</label>
             <input type="email" class="form-control" name="user_mail" id="user_mail" placeholder="Enter email">
         </div>
@@ -30,11 +31,11 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" name="user_password" id="user_password" placeholder="Enter password">
         </div>
-        <div>
+        <div style="margin-top: 20px;">
             <input type="checkbox" class="form-check-input" id="keep_user">
             <label for="form-check-label" for="keep_user">Keep me logged in</label>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button style="margin-top: 20px" type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 {% endblock %}

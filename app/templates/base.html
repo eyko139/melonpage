@@ -12,44 +12,57 @@
 <link rel="stylesheet" href="{{ url_for('static', filename="mycss.css") }}">
 
 
-
                 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
                 <script src="{{ url_for('static', filename = 'moment.js') }}"></script>
-                <link rel="stylesheet" href="{{ url_for('static', filename='css/mycss.css') }}">
-
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 </style>
 {% block head %}
 {% endblock %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
-        </head>
+</head>
 <body>
-    <div class="my-container">
-        <div class="topnav">
+    <div class="navbox" id="navbox">
                 <ul id="navlist">
-                    <li><a href="{{ url_for("main.index") }}" class="brand">L-Page</a></li>
+                    <li><a href="{{ url_for("main.index") }}" class="brand">L-Page</a>
+                        <div class="hamburger" id="toggler">
+                            <span class="line"></span>
+                            <span class="line2"></span>
+                            <span class="line3"></span>
+                        </div>
+
+
+                    </li>
                         <li>
-                                <a href="{{ url_for("main.adder") }}" class="navlink">Add Todo</a></li>
-                        <li>
-                                <a href="{{ url_for("main.list") }}" class="navlink">Todo List</a></li>
-                        <li>
-                                <a href="{{ url_for("main.completed") }}" class="navlink">Completed Todos</a></li>
-                        <li>
-                            <a href="{{ url_for("main.maos") }}" class="navlink">Maos</a></li>
-                        <li>
-                          <a href="{{ url_for("main.upload") }}" class="navlink">Upload</a></li>
+                                <button class="dropdownbtn">
+                          <a id="todo_link" href="{{ url_for("main.list") }}" class="navlink">Todo List</a>
+                            <div id="todo-arrow"></div>
+                                    <div class="dropdowncontent">
+                                        <ul class="dropdown-list">
+                                            <li class="dropdown-list-item" id="profile"><a href="{{ url_for("main.adder") }}">Add</a></li>
+                                            <li class="dropdown-list-item" id="logout"><a href="{{ url_for("main.list") }}">Active</a></li>
+                                            <li class="dropdown-list-item" id="logout"><a href="{{ url_for("main.completed") }}">Finished</a></li>
+                                        </ul>
+                                    </div>
+                                </button>
+                        </li>
                         <li>
                           <a href="{{ url_for("covid.stats") }}" class="navlink">Covid</a></li>
+                        <li>
+                          <a href="{{ url_for("main.upload") }}" class="navlink">Upload</a></li>
                         {% if current_user.is_authenticated %}
                         <li>
-                            <div class="dropdown"id="account">
-                                <button class="dropdownbtn">Account<div class="arrowup"</div></button>
+                            <button class="dropdownbtn"><span style="color: #c9c6bb; font: inherit; font-size:30px; font-weight: 400">Account</span>
                                     <div class="dropdowncontent">
-                                        <a href="{{ url_for("main.user", username=current_user.username) }}" >Profile</a>
-                                        <a href="{{ url_for("auth.logout") }}">Logout</a>
+                                        <ul class="dropdown-list">
+                                            <li class="dropdown-list-item" id="profile"><a href="{{ url_for("main.user", username=current_user.username) }}">Profile</a></li>
+                                            <li class="dropdown-list-item" id="logout"><a href="{{ url_for("auth.logout") }}">Logout</a></li>
+                                        </ul>
                                     </div>
-                            </div>
+                                    <div class="arrowup"></div>
+                                </button>
                         </li>
                         {% else %}
                             <li>
@@ -60,15 +73,7 @@
                             </li>
 
                             {% endif %}
-                        <li>
-                        <div class="hamburger" id="toggler">
-                            <span class="line"></span>
-                            <span class="line2"></span>
-                            <span class="line3"></span>
-                        </div>
-                        </li>
                     </ul>
-        </div>
     </div>
         </nav>
     </div>
@@ -82,9 +87,16 @@
 
     var toggler = document.getElementById("toggler");
                 toggler.addEventListener("click", function() {
-                var nav = document.getElementById("navlist");
-                nav.classList.toggle("toggled")
+                var nav = document.getElementById("navbox");
+                var navl = document.getElementById("navlist");
+                navl.classList.toggle("toggled");
+                nav.classList.toggle("toggled");
+                toggler.classList.toggle("ham-active");
                                 });
+if (window.matchMedia("(max-width: 600px)").matches) {
+            todo_link = document.getElementById("todo_link");
+            todo_link.setAttribute("href", "#");
+                }
 
             </script>
 {% block body %}

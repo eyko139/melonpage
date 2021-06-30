@@ -13,12 +13,12 @@
     <div class="container">
       <div class="list-group">
         <div class="list-group-items">
-          <p>{{ file }}i</p>
+          <p style="color:black">{{ file }}</p>
           <img src="{{ url_for('static', filename="receipts/"+file) }}" style="width: 500px">
-          <form method="post">
+          <!--<form method="post">
             <button type="submit" class="btn btn-danger btn-sm" name="delete" value="{{ file }}">Delete</button> 
             <button type="submit" class="btn btn-success btn-sm font-size:1rem" name="done" value="{{ file }}">Done</button>
-          </form> 
+          </form> -->
         </div>
       </div>
     </div>
