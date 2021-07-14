@@ -50,12 +50,17 @@
             </div>
         </div>
         <div id="row2" class="my-row2">
+          <div class="small-link-container" id="small-links">
+            <a id="small-active" href="{{url_for("main.list")}}">Active</a>
+            <a id="small-add" href="{{url_for("main.adder")}}">New</a>
+            <a id="small-finished" href="{{url_for("main.completed")}}">Finished</a>
+          </div>
             <div id="todoContainer" class="img-container">
                 <img class="row-img" src="{{ url_for('static', filename='todo.png') }}"style="max-height:120%; margin-left:15px">
             </div>
                 <div class="index-container">
-                    <h2 id="todoClick" style="display:inline-block"><a class="card-p"href="{{ url_for("main.list") }}">Todo list</a></h2>
-                    <p>Manage the Todo list.<br>Add and delete Todos.<br>Comment on currently active Todos</p>
+                    <h2 id="todoClick" style="display:inline-block"><a id="todoLink" class="card-p"href="{{ url_for("main.list") }}">Todo list</a></h2>
+                    <p>Manage the Todo list.<br>Add and delete Todos.<br>Comment on currently Todos</p>
                     <a class="overlay" href="{{ url_for("main.list") }}">
                         <div class="arrow-right"></div>
                     </a>
@@ -65,6 +70,9 @@
                 </a>
                 </div>
             </div></div>
+        <footer>
+          <p>Contact me: <br> lukas-kuehne@gmx.net</p>
+        </footer>
 </main>
         <script>
                 var todoLink = document.getElementById("imgbox5");
