@@ -55,6 +55,9 @@ table {
 /* 1 MAIN */
 main {
     background-color: white;
+    display:grid;
+    grid-template-rows: repeat(9, 300px);
+    grid-template-columns: repeat(12, 1fr);
 }
 header {
     display: flex;
@@ -67,7 +70,7 @@ header {
 }
 h1, h2, h3 {
   color: #f5b318;
-  font-family: 'Oswald',sans-serif;
+  font-family: 'Roboto',sans-serif;
   font-size: 2.5rem;
   font-weight: 500;
   letter-spacing: 2px;
@@ -88,6 +91,8 @@ p {
     font-size: 25px;
     font-weight: 300;
     margin: 20px;
+    font-family: Verdana;
+    letter-spacing: 1px;
 }
 header p a {
     color: red;
@@ -95,7 +100,10 @@ header p a {
 }
 .index-container {
     padding: 30px;
-    flex: 1 1 auto;
+    grid-column-start: 7;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
 .my-container {
@@ -151,31 +159,35 @@ ul.toggled a.brand {
     grid-template-rows: 500px;
 }
 .my-row {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(12, 1fr);
     background: rgb(66,88,122);
     background: radial-gradient(circle, rgba(66,88,122,1) 0%, rgba(60,64,71,1) 42%, rgba(88,94,104,1) 71%, rgba(107,142,199,1) 94%);
-    height: 500px;
-    display: flex;
+    grid-area: 1/1/2/span 12;
+    height: 100%;
     align-items: center;
 }
 .my-row2 {
+    display: grid;
     background: rgb(81,106,147);
     background: linear-gradient(90deg, rgba(81,106,147,1) 16%, rgba(25,33,46,1) 48%, rgba(107,142,199,1) 91%); 
-    height: 500px;
-    display: flex;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(12, 1fr);
+    grid-area: 2/1/2/span 12;
+    height: 100%;
     align-items: center;
 }
-.image-container {
-    height: 500px;
-    width: 50%;
+.img-container {
+    grid-area: 1/1/3/7;
+    height: 100%;
+    width: 100%;
 }
 
 .row-img {
-    padding: 20px;
-    display: inline-block;
-    height: 100%;
-    width: 50%;
+    max-height: 100%;
+    width: auto;
 }
-
 
 .hamburger {
     display: block;
@@ -234,18 +246,65 @@ ul.toggled a.brand {
     .line {
         display:block;
     }
+    main {
+        display: grid;
+        grid-template: repeat(5, 400px) / 1fr 1fr 1fr;
+    }
 }
 @media only screen and (max-width: 600px) {
     ul.toggled li:not(:first-child) {
         display: block;
         display: flex;
-    
     }
     /* ul.toggled li:last-child {display: block;} */
-    .my-row, .my-row2 {flex-direction: column}
-    .row-img {max-height:50%; width: 100%}
-    .index-container{padding:10px;}
-    .arrow-right{left: 20px}
+    .my-row{
+        display: grid;
+        grid-template-rows: 300px 100px; 
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-area: 1/1/2/span3; 
+        align-content: center;
+    }
+    .my-row2{
+        display: grid;
+        grid-template-rows: 300px 100px; 
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-area: 2/1/2/span3; 
+        align-content: center;
+    }
+    .img-container{
+        grid-area: 1/1/2/4;
+        height: revert;
+        width: revert;
+    }
+    .row-img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+    .index-container{
+        grid-area: 2/1/3/4;
+        max-width: 100%;
+        max-height: 100%;
+        padding:revert;
+        display: flex;
+        justify-content: space-around;
+    }
+    .index-container > h2 {
+        font-size: 2rem;
+        font-weight: 400;
+        letter-spacing: 1.5px;
+    }
+    .index-container > p {
+        display:none;
+    }
+    .arrow-right {
+        display:none;
+    }
+    .index-container > .shit > .arrow-right.small-screen {
+        display: inline-block;
+    }
+    .index-container > .shit {
+        display: inline-block;
+    }
     .navbox.toggled {height: 500px;}
     #navlist {
         flex-flow: column nowrap;
@@ -266,10 +325,12 @@ ul.toggled a.brand {
     }
     .dropdownbtn:active .dropdowncontent {
       max-height:100%;
-  }
-
+    }
 }
  
+.shit {
+    display:none;
+}
 
 li a {
   text-decoration: none;
@@ -298,8 +359,8 @@ li a.active {
   color: white;
 }
 .dropdownbtn {
-    padding: 0;
-    width: 227px;
+  padding: 0;
+  width: 227px;
   text-decoration: none;
   height: 100%;
   text-align: center;
@@ -433,7 +494,11 @@ ul.toggled .dropdown {
     border-top: 30px solid transparent;
     border-bottom: 30px solid transparent;
     border-left: 40px solid #FCC358;
+    border-radius: 5px;
     right: 0px;
+}
+.arrow-right.small-screen {
+    display: none;
 }
 /*.arrow-down {
     height: 0;

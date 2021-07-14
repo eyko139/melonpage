@@ -16,6 +16,7 @@
     {% endfor %}
 {% endif %}
 {% endwith %}
+<script src="{{url_for('static', filename='main.js')}}" defer> </script>
 {% endblock %}
 {% block body %}
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,28 +33,38 @@
             {% endif %}
     </header>
     -->
-    <div class="flex-con">
         <div class="my-row">
-            <img class="row-img"src="{{url_for('static', filename='virus.png') }}">
+            <div class="img-container">
+                <img class="row-img"src="{{url_for('static', filename='virus.png') }}">
+            </div>
             <div class="index-container">
                 <h2 style="display:inline-block"><a class="card-p"href="{{url_for("covid.stats") }}">Corona Statistics</a></h2>
-                <p>- Check out recent statics.<br>- Can be searched by country and date</p>
+                <p>Check out recent statics.<br>Can be searched by country and date</p>
+                <a class="shit"href="{{ url_for("covid.stats") }}">
+                    <div class="arrow-right small-screen">
+                    </div>
+                </a>
                 <a class="overlay" href="{{ url_for("covid.stats") }}">
                     <div class="arrow-right"></div>
                 </a>
             </div>
         </div>
-        <div class="my-row2">
-                <img class="row-img" src="{{ url_for('static', filename='todo.png') }}">
-            <div class="index-container">
-                <h2 style="display:inline-block"><a class="card-p"href="{{ url_for("main.list") }}">Todo list</a></h3>
-                <p>- Manage the Todo list.<br>- Add and delete Todos.<br>- Comment on currently active Todos</p>
-                <a class="overlay" href="{{ url_for("main.list") }}">
-                    <div class="arrow-right"></div>
-                </a>
+        <div id="row2" class="my-row2">
+            <div id="todo-container" class="img-container">
+                <img class="row-img" src="{{ url_for('static', filename='todo.png') }}"style="max-height:120%; margin-left:15px">
             </div>
-        </div>
-    </div>
+                <div class="index-container">
+                    <h2 id="todoClick" style="display:inline-block"><a class="card-p"href="{{ url_for("main.list") }}">Todo list</a></h2>
+                    <p>Manage the Todo list.<br>Add and delete Todos.<br>Comment on currently active Todos</p>
+                    <a class="overlay" href="{{ url_for("main.list") }}">
+                        <div class="arrow-right"></div>
+                    </a>
+                <a class="shit"href="{{ url_for("covid.stats") }}">
+                    <div class="arrow-right small-screen">
+                    </div>
+                </a>
+                </div>
+            </div></div>
 </main>
         <script>
                 var todoLink = document.getElementById("imgbox5");
