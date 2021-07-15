@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body %}
 <h1 id="countryh1">{{ country }} (total)</h1>
-    <form method="Post">
+    <form method="Post" autocomplete="off">
       <label for="exampleDataList" class="form-label">Search for date</label>
         <input class="form-control" list="datalistOptions" name="country_date" id="exampleDataList" placeholder="Type to search...">
         <datalist id="datalistOptions">
