@@ -58,6 +58,7 @@ main {
     display:grid;
     grid-template-rows: 400px 400px 100px;
     grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
 }
 header {
     display: flex;
@@ -71,6 +72,7 @@ header {
 footer {
     grid-area: 3/1/4/13;
     background-color:#19212e;
+    margin-top:10px;
   }
 h1, h2, h3 {
   color: #f5b318;
@@ -144,13 +146,13 @@ li {
     flex: 1 1 0;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease-in 0s;
 }
 ul a.brand {
-    font-size: 45px;
-    padding: 22px 40px;
+    font-size: 32px;
     color: #f5b318;
-    letter-spacing: 5px;
-    font-family: 'Monoton', cursive;
+    letter-spacing: 1.5px;
+    font-family: arial, cursive;
 }
 ul.toggled a.brand {
     border-bottom: 1px solid white;
@@ -171,6 +173,13 @@ ul.toggled a.brand {
     grid-area: 1/1/2/span 12;
     height: 100%;
     align-items: center;
+    margin:10px;
+    box-shadow: rgb(0 0 0 / 35%) 0px 15px 25px;
+    border-radius: 5px;
+}
+.my-row:hover{
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 29px 53px;
+  transform: translate3d(0px, -3px, 0px);
 }
 .my-row2 {
     display: grid;
@@ -181,6 +190,13 @@ ul.toggled a.brand {
     grid-area: 2/1/2/span 12;
     height: 100%;
     align-items: center;
+    margin:10px;
+    box-shadow: rgb(0 0 0 / 35%) 0px 15px 25px;
+    border-radius: 5px;
+}
+.my-row2:hover{
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 29px 53px;
+  transform: translate3d(0px, -3px, 0px);
 }
 .img-container {
     grid-area: 1/1/3/7;
@@ -399,9 +415,17 @@ ul.toggled a.brand {
 
 li a {
   text-decoration: none;
-  font-size: 30px;
-  color: #c9c6bb;
+  font-size: 22px;
+  color: white;
   text-align: center;
+  font-family: arial;
+  letter-spacing: 1.5px;
+}
+li a:hover{
+  color:white;
+}
+li:hover {
+  background-color:#2D394E ;
 }
 /*li:nth-last-child(2) {
   border-right: none;
@@ -420,12 +444,11 @@ li:first-child {
 }
 
 li a.active {
-  background-color: green;
   color: white;
 }
 .dropdownbtn {
   padding: 0;
-  width: 227px;
+  width: 100%;
   text-decoration: none;
   height: 100%;
   text-align: center;
@@ -452,7 +475,7 @@ ul.toggled .dropdown {
   display: flex;
   position: absolute;
   top: 90px;
-  width: inherit;
+  width: 250px;
   color: black;
   max-height: 0px;
   overflow-y: hidden;
