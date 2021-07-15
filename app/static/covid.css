@@ -1,6 +1,6 @@
 mainCovid {
   display:grid;
-  grid-template:100px 100px 600px 400px 400px 100px / repeat(12, 1fr);
+  grid-template:100px 100px 200px 400px 400px 100px / repeat(12, 1fr);
 }
 mainCovid h1 {
   grid-area: 1 / 1 / span 1/ span12;
@@ -37,4 +37,117 @@ tr {
   width: 95%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   margin: 10px;
+}
+.visualcovid {
+    display:grid;
+    grid-template: 100px 100px 100px / repeat(6, 1fr);
+    grid-area: 2/ 1/5/ span 12;
+    grid-gap: 10px;
+    margin: 0px 20px;
+}
+.visualcovid div {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: flex-end;
+    max-width:100%;
+    max-height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
+}
+.visualcovid img {
+    height:auto;
+    max-width: 35%;
+}
+#New\ Deaths img {
+    max-width: 30%;
+}
+#New\ Confirmed {
+    grid-area:1/1/3/3;
+}
+#New\ Deaths {
+    grid-area:1/5/3/span 2;
+}
+#Total\ Confirmed{
+    grid-area:3/1/span 1/span 1;
+}
+#Total\ Deaths{
+    grid-area:3/2/span 1/span 1;
+}
+#New\ Recovered{
+    grid-area:3/5/span 1/span 1;
+}
+#Total\ Recovered{
+    grid-area:3/6/span 1/span 1;
+}
+#country {
+    grid-area: 2/3/span 2/ span 2;
+    display: flex;
+    flex-direction: column;
+}
+#country img {
+    margin: 10px;
+
+}
+.visualcovid h5 {
+    font-size: 2rem;
+    font-family: Roboto;
+    margin-bottom: 10px;
+}
+#countrySearch2 {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    grid-area: 1 / 3 / span 1/span 2;
+}
+.form-label {
+    text-align: center;
+}
+@media only screen and (max-width: 600px) {
+    maincovid {
+        grid-template: 1000px/1fr;
+    }
+    .visualcovid {
+        grid-area: 1 / 1 / span 1 /span 1;
+        grid-template: 100px 150px repeat(6, 75px)/ 1fr;
+        width: 100%;
+        margin: 0px;
+    }
+    #New\ Confirmed {
+        grid-area:3/1/span 1/span 1;
+    }
+    #New\ Deaths {
+        grid-area:4/1/span 1/span 1;
+    }
+    #Total\ Confirmed{
+        grid-area:5/1/span 1/span 1;
+    }
+    #Total\ Deaths{
+        grid-area:6/1/span 1/span 1;
+    }
+    #New\ Recovered{
+        grid-area:7/1/span 1/span 1;
+    }
+    #Total\ Recovered{
+        grid-area:8/1/span 1/span 1;
+    }
+    #country {
+        grid-area: 2/1/span 1 / span 1;
+        display: flex;
+        flex-direction: column;
+    }
+    #country img{
+        max-width:20%;
+    }
+    #countrySearch2 {
+        margin-top: 5px;
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        grid-area: 1 / 1 / span 1/span 1;
+    }
+    maincovid h1 {
+        display: none
+    }
+
 }

@@ -23,3 +23,12 @@ function addElement() {
   const search = document.getElementById("countrySearch");
   document.body.insertBefore(newDiv, search);
 }*/
+function picInsert(path) {
+    return `<img src="/static/${path}">`
+}
+console.log(picInsert("corona.png"));
+const bla = '<img href=\"{{url_for(\"static}\", filename=\"corona.png\")}}\">'
+const confirmed = document.getElementById("New Confirmed");
+confirmed.insertAdjacentHTML("afterbegin", picInsert("corona.png"));
+const dead = document.getElementById("New Deaths");
+dead.insertAdjacentHTML("afterbegin", picInsert("death.png"));

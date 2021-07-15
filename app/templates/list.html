@@ -31,6 +31,7 @@
   </style>
 {% extends "base.html" %} 
 {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='todo.css') }}">
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}

@@ -9,3 +9,18 @@ form {
   font-family: Roboto;
   text-align: center;
 }
+#Active {
+    grid-area: 1/1/span 2/ span 2;
+}
+#Deaths {
+    grid-area: 1/5/span 2/span 2;
+}
+#Deaths img {
+    max-height: 70%;
+}
+#countrysearch {
+    grid-area:1/3/span 2/span 2;
+}
+#mobiledate {
+    display:none;
+}

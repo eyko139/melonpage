@@ -23,7 +23,8 @@
 {% block body %}
 <mainCovid>
 <h1 style="text-align: center">Current total numbers</h1>
-  <form id="countrySearch" method="POST" autocomplete="off">
+  <div class="visualcovid">
+  <form id="countrySearch2" method="POST" autocomplete="off">
     <label style="font-size: 30px;"for="exampleDataList" class="form-label">Search for country</label>
     <input class="form-control" list="datalistOptions" name="country_select" id="exampleDataList" placeholder="Type to search...">
     <datalist id="datalistOptions">
@@ -32,47 +33,21 @@
       {% endfor %}
     </datalist>
   </form>
-  <!-- On small screens => no talbe -->
-  <div class="statcontainer">
-    <table class="table caption-top table-striped table-hover" id="covidtable">
-      <caption>World</caption>
-        <tbody>
-          {% for case, value in cases.items() %}
-          <tr>
-            <th scope="row">{{case}}</th>
-            <td>{{value}}</td>
-          </tr>
-          {% endfor %}
-    </table>
+      <div id="country">
+          <img src="/static/world.png">
+          <h5>Country: World</h5>
+      </div>
+      {% for stat, value in cases.items() %}
+        <div id="{{stat}}">{{stat}}:
+        <h5>{{value}}</h5>
+        </div>
 
-   <!-- <div id="{{case}}">{{case}}</div>
-   <div id="{{case}}-value">{{value}}</div> -->
+      {% endfor %}
   </div>
 
 
 
 
 
-
-  <div id="countryTable" class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Country</th>
-          {% for i in cases.keys() %}
-          <th class="even-col"scope="col">{{ i }}</th>
-          {% endfor %}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">World</th>
-          {% for j in cases.values() %}
-          <td>{{ j }}</td>
-          {% endfor %}
-        </tr>
-      </tbody>
-  </div>
-  </div>
 </mainCovid>
 {% endblock %}
