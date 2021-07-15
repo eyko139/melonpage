@@ -17,38 +17,62 @@
     {% endfor %}
 {% endif %}
 {% endwith %}
+<link rel="stylesheet" href="{{ url_for('static', filename='covid.css')}}">
+<script src="{{ url_for('static', filename='covid.js') }}" defer></script>
 {% endblock %}
 {% block body %}
-
+<mainCovid>
 <h1 style="text-align: center">Current total numbers</h1>
-  <span>
-    <form method="Post">
-      <label style="font-size: 30px;"for="exampleDataList" class="form-label">Search for country</label>
-        <input class="form-control" list="datalistOptions" name="country_select" id="exampleDataList" placeholder="Type to search...">
-        <datalist id="datalistOptions">
-          {% for country in country %}
-          <option value="{{ country }}">
-          {% endfor %}
+  <form id="countrySearch" method="POST">
+    <label style="font-size: 30px;"for="exampleDataList" class="form-label">Search for country</label>
+    <input class="form-control" list="datalistOptions" name="country_select" id="exampleDataList" placeholder="Type to search...">
+    <datalist id="datalistOptions">
+      {% for country in country %}
+      <option value="{{ country }}">
+      {% endfor %}
     </datalist>
-    </form>
-<div class="table-responsive">
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Country</th>
-        {% for i in cases.keys() %}
-        <th scope="col">{{ i }}</th>
-        {% endfor %}
-    </tr>
-  </thead>
-<tbody>
-  <tr>
-    <th scope="row">Total</th>
-    {% for j in cases.values() %}
-    <td>{{ j }}</td>
-    {% endfor %}
-  </tr>
-</tbody>
-</div>
-</div>
+  </form>
+  <!-- On small screens => no talbe -->
+  <div class="statcontainer">
+    <table class="table caption-top table-striped table-hover" id="covidtable">
+      <caption>World</caption>
+        <tbody>
+          {% for case, value in cases.items() %}
+          <tr>
+            <th scope="row">{{case}}</th>
+            <td>{{value}}</td>
+          </tr>
+          {% endfor %}
+    </table>
+
+   <!-- <div id="{{case}}">{{case}}</div>
+   <div id="{{case}}-value">{{value}}</div> -->
+  </div>
+
+
+
+
+
+
+  <div id="countryTable" class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Country</th>
+          {% for i in cases.keys() %}
+          <th class="even-col"scope="col">{{ i }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">World</th>
+          {% for j in cases.values() %}
+          <td>{{ j }}</td>
+          {% endfor %}
+        </tr>
+      </tbody>
+  </div>
+  </div>
+</mainCovid>
 {% endblock %}

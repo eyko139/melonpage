@@ -1,0 +1,40 @@
+mainCovid {
+  display:grid;
+  grid-template:100px 100px 600px 400px 400px 100px / repeat(12, 1fr);
+}
+mainCovid h1 {
+  grid-area: 1 / 1 / span 1/ span12;
+  font-family: Roboto;
+  font-weight: 700;
+}
+#countrySearch {
+  grid-area: 2/1/3/span12;
+  text-align: center;
+  font-family: Roboto;
+}
+#countryTable {
+  display: grid;
+  grid-area: 3/1/4/span12;
+}
+.statcontainer {
+  display:none;
+  grid-area: 3 /1 / 4/ span12;
+}
+caption {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: Roboto;
+}
+tr > * {
+  font-size: 1.5rem;
+  font-family: Roboto;
+}
+tr {
+  margin: 10px;
+}
+#covidtable {
+  width: 95%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 10px;
+}

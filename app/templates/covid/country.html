@@ -1,6 +1,11 @@
 {% extends "base.html" %}
+{% block head %}
+<script src="{{ url_for('static', filename='covidcountry.js') }}" defer></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='covid.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='covidcountry.css')}}">
+{% endblock %}
 {% block body %}
-<h1>Stats for {{ country }} (total)</h1>
+<h1 id="countryh1">{{ country }} (total)</h1>
     <form method="Post">
       <label for="exampleDataList" class="form-label">Search for date</label>
         <input class="form-control" list="datalistOptions" name="country_date" id="exampleDataList" placeholder="Type to search...">
@@ -10,7 +15,23 @@
           {% endfor %}
     </datalist>
     </form>
-<table class="table">
+<!-- MOBILE -->
+
+  <div class="statcontainer">
+    <table class="table caption-top table-striped table-hover" id="covidtable">
+      <caption>{{country}}</caption>
+        <tbody>
+          {% for case, value in cases.items() %}
+          <tr>
+            <th scope="row">{{case}}</th>
+            <td>{{value}}</td>
+          </tr>
+          {% endfor %}
+    </table>
+  </div>
+
+  <!-- DESKTOP -->
+<table id="countryTable2" class="table">
   <thead>
     <tr>
       <th scope="col">{{ Country }}</th>

@@ -27,7 +27,7 @@ const todox = document.getElementById("todoClick");
 const small = document.getElementById("small-links");
 console.log(small);
 if (window.matchMedia("(max-width: 600px)").matches) {
-  small.style.left = "-150px";
+  small.style.left = "-250px";
 } else{
   small.style.right="-250px";
   small.style.display = "none";
@@ -35,7 +35,7 @@ if (window.matchMedia("(max-width: 600px)").matches) {
 console.log(small.style.left);
 const old = todox.innerHTML;
 const todoHoverHandler = () => {
-    if (window.matchMedia("(max-width: 600px)") && small.style.left=="-150px"){
+    if (window.matchMedia("(max-width: 600px)") && small.style.left=="-250px"){
       TodoIcon.style.transition = "transform 0.5s";
       TodoIcon.style.transform = "";
       TodoIcon.style.position = "relative";
