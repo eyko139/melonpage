@@ -24,7 +24,7 @@ country.insertAdjacentHTML("afterbegin", picInsert(countryname.toLowerCase()));
 
 date_panel = document.getElementById("Date-h")
 temp_inner = date_panel.innerHTML
-document.getElementById("Date-h").innerHTML = "Today's National Numbers ("+temp_inner+")";
+document.getElementById("Date-h").innerHTML = "National Numbers for "+temp_inner;
 
 //Change the placeholder values of both Graph search bars when queried
 const queried_value = document.getElementById("javaproxy").innerHTML;
