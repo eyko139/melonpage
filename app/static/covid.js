@@ -32,3 +32,13 @@ const confirmed = document.getElementById("New Confirmed");
 confirmed.insertAdjacentHTML("afterbegin", picInsert("corona.png"));
 const dead = document.getElementById("New Deaths");
 dead.insertAdjacentHTML("afterbegin", picInsert("death.png"));
+
+const queried_value = document.getElementById("javaproxy").innerHTML;
+const form_select = document.querySelector(`option[value="${queried_value}"]`);
+form_select.setAttribute("selected", "");
+
+const queried_days = document.getElementById("javaproxy2").innerHTML;
+const days_select = document.getElementById("world-days-select");
+days_select.setAttribute("placeholder", `Interval (current: ${queried_days})`);
+
+

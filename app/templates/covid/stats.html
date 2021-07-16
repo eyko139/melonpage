@@ -53,10 +53,15 @@
         <div id="{{stat}}">{{stat}}:
         <h5>{{value}}</h5>
         </div>
-
       {% endfor %}
+        <div id="current_date">
+            <h4>Today's global numbers ({{ current_date }})</h4>
+        </div>
+
   </div>
-  <p style="display:none" id="labeltransfer">{{ queried_value }} in the last {{nr_days}} days</p>
+<p style="display:none" id="labeltransfer">{{ queried_value }} in the last {{nr_days}} days</p>
+<p id="javaproxy" style="display:none">{{queried_value}}</p>
+<p id="javaproxy2" style="display:none">{{nr_days}}</p>
 <canvas id="lineChartWorld"></canvas>
 
 

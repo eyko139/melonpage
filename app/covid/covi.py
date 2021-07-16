@@ -17,7 +17,9 @@ class Covid:
             cases = res["Global"]
         except:
             return None
-        current_date = res["Date"]
+        date = datetime.strptime(res["Date"], "%Y-%m-%dT%H:%M:%S.%fZ")
+        current_date = date.strftime("%d. %b") 
+
     
     #Getting the heads(keys()) of "Global" key
     #making a new "cases" dict without the last element of the summary (date)            
@@ -66,12 +68,15 @@ class Covid:
     #datetime objects needs to be sorted !
     def get_days_value_world(self, days, value) ->dict:
         res = requests.get(self.world_url).json()[-int(days):]
+        res_sorted = sorted(res, key=lambda k: k["Date"])
         dates_world = []
         value_world = []
-        for i,date in enumerate(res):
-            time = datetime.strptime(res[i]["Date"], "%Y-%m-%dT%H:%M:%S.%fZ")
+        for i in range(0, len(res_sorted)):
+            time = datetime.strptime(res_sorted[i]["Date"], "%Y-%m-%dT%H:%M:%S.%fZ")
             dates_world.append(time.strftime("%d. %b"))
-            value_world.append(res[i][value])
+            value_world.append(res_sorted[i][value])
+
+        
         return dates_world, value_world
 
             

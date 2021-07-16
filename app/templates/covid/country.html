@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='covidcountry.css')}}">
 {% endblock %}
 {% block body %}
-<h1 id="countryh1">{{ country }} (total)</h1>
+<maincovid>
+<h1 id="countryh1">{{ country }}</h1>
 <!-- MOBILE -->
 
 <form id="mobiledate" method="Post" autocomplete="off">
@@ -31,8 +32,7 @@
   </div>
 
   <!-- DESKTOP -->
-  <div class="visualcovid">
-    <form id="countrysearch" method="Post" autocomplete="off">
+    <form id="datesearch" method="Post" autocomplete="off">
       <label for="exampleDataList" class="form-label">Search for date</label>
         <input class="form-control" list="datalistOptions" name="country_date" id="exampleDataList" placeholder="Type to search...">
         <datalist id="datalistOptions">
@@ -41,14 +41,51 @@
           {% endfor %}
     </datalist>
     </form>
+  <form id="country-value-select" method="POST" >
+    <select id="value-dropdown" class="form-select" name="country-value-select"aria-label=".form-select-lg example">
+      <option value="Active">Active Cases</option>
+      <option value="Recovered">Recovered Cases</option>
+      <option value="Deaths">Total Deaths</option>
+      <option value="Confirmed">Confirmed Cases</option>
+    </select>
+    <input id="country-days-select" name="country-days-select"class="form-control" type="text" placeholder="Day Interval">
+    <button class="btn btn-primary" type="submit">Update Graph</button>
+  </form>
+  <div class="visualcovid">
       <div id="country">
           <h5>Country: <span id="countryname">{{country}}</span></h5>
       </div>
       {% for stat, value in cases.items() %}
-      <div id="{{stat}}"><h5>{{stat}}:</h5>
-        <h5>{{value}}</h5>
+      <div id="{{stat}}">
+          <h5 id="{{stat}}-h">{{stat}}: <br>{{value}}</h5>
         </div>
 
       {% endfor %}
   </div>
+<h1 style="display:none"id="test">{{queried_value}} cases in {{country}} (last {{queried_days}} days)</h1> 
+<p id="javaproxy" style="display:none">{{queried_value}}</p>
+<p id="javaproxy2" style="display:none">{{queried_days}}</p>
+<canvas id="lineChartCountry"></canvas>
+    <script defer>
+      var ctx = document.getElementById("lineChartCountry").getContext("2d");
+      var linechart = new Chart(ctx, {
+              type: "line",
+              data: {
+                      labels: {{ graph_dates | safe }},
+                      datasets: [
+                              {
+                                      label: document.getElementById("test").innerHTML,
+                                      data: {{ graph_values | safe }},
+                                      fill: false,
+                                      borderColor: "rgb(75, 192, 192)",
+                                      lineTension: 0.1 
+                              }
+                              ]
+                    },
+              options: {
+                      responsive: false
+                    }
+            });
+    </script>
+</maincovid>
 {% endblock %}
