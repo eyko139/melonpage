@@ -6,6 +6,7 @@ class Covid:
     def __init__(self):
         self.summary_url = "https://api.covid19api.com/summary"
         self.status_url = "https://api.covid19api.com/country/{}"
+        self.world_url = "https://api.covid19api.com/world"
    
     def get_summary_cases(self):
         self.cases = {}
@@ -16,6 +17,7 @@ class Covid:
             cases = res["Global"]
         except:
             return None
+        current_date = res["Date"]
     
     #Getting the heads(keys()) of "Global" key
     #making a new "cases" dict without the last element of the summary (date)            
@@ -23,7 +25,7 @@ class Covid:
         for key, value in zip(headers, list(cases.values())[:-1]):
                 self.cases[key] = value
 
-        return self.cases
+        return self.cases, current_date
 
     def get_countries(self):
         res = requests.get('https://api.covid19api.com/countries').json()
@@ -43,6 +45,37 @@ class Covid:
             self.cases[i] = res[i]
         
         return self.cases
+
+    #Creates nested dict with LAST 7 days as keys for queried country 
+    def get_country_seven_days(self , slug_name) -> dict:
+        res = requests.get(self.status_url.format(slug_name)).json()[-7:]
+        dates = {}
+        for i,date in enumerate(res):
+            dates[res[i]["Date"]] = {"Confirmed":res[i]["Confirmed"], "Deaths":res[i]["Deaths"], "Recovered":res[i]["Recovered"], "Active":res[i]["Active"]}
+
+        return dates
+    def get_days_value(self, slug_name, days, value) ->dict:
+        res = requests.get(self.status_url.format(slug_name)).json()[-int(days):]
+        dates = []
+        active = []
+        for i,date in enumerate(res):
+            time = datetime.strptime(res[i]["Date"], "%Y-%m-%dT%H:%M:%SZ")
+            dates.append(time.strftime("%d. %b"))
+            active.append(res[i][value])
+        return dates, active
+    #datetime objects needs to be sorted !
+    def get_days_value_world(self, days, value) ->dict:
+        res = requests.get(self.world_url).json()[-int(days):]
+        dates_world = []
+        value_world = []
+        for i,date in enumerate(res):
+            time = datetime.strptime(res[i]["Date"], "%Y-%m-%dT%H:%M:%S.%fZ")
+            dates_world.append(time.strftime("%d. %b"))
+            value_world.append(res[i][value])
+        return dates_world, value_world
+
+            
+
    #Finding the json entry of the corresponding country on the requested time
    #and prettifying the timestamp into datetime obj
     def get_country_on_date(self, slug_name, date):

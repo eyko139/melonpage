@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block head %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"</script>
+{% endblock %}
+{% block body %}
+<h1 id="test">{{value}} cases in {{country}} (last {{days}} days)</h1> 
+<canvas id="lineChart" width="900" height="400"></canvas>
+    <script defer>
+      var ctx = document.getElementById("lineChart").getContext("2d");
+      var linechart = new Chart(ctx, {
+              type: "line",
+              data: {
+                      labels: {{ dates | safe }},
+                      datasets: [
+                              {
+                                      label: document.getElementById("test").innerHTML,
+                                      data: {{ values | safe }},
+                                      fill: false,
+                                      borderColor: "rgb(75, 192, 192)",
+                                      lineTension: 0.1 
+                              }
+                              ]
+                    },
+              options: {
+                      responsive: false
+                    }
+            });
+    </script>
+    {{value}}
+    {{country}}
+  {{dates}}
+  {{active}}
+
+  {% endblock %}
+

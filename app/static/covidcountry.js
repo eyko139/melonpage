@@ -12,9 +12,13 @@ if (window.matchMedia("(max-width: 600px)").matches) {
   header.style.display = "none";
 }
 function picInsert(path) {
-    return `<img src="/static/${path}">`
+    return `<img src="/static/flags/${path}">`
 }
 const active = document.getElementById("Active")
 active.insertAdjacentHTML("afterbegin", picInsert("sick.png"))
 const deaths = document.getElementById("Deaths")
 deaths.insertAdjacentHTML("afterbegin", picInsert("death.png"));
+const countryname = document.getElementById("countryname").innerHTML;
+const country = document.getElementById("countryh1");
+country.insertAdjacentHTML("afterbegin", picInsert(countryname.toLowerCase()));
+

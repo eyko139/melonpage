@@ -24,7 +24,7 @@ function addElement() {
   document.body.insertBefore(newDiv, search);
 }*/
 function picInsert(path) {
-    return `<img src="/static/${path}">`
+    return `<img src="/static/flags/${path}">`
 }
 console.log(picInsert("corona.png"));
 const bla = '<img href=\"{{url_for(\"static}\", filename=\"corona.png\")}}\">'

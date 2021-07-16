@@ -22,8 +22,6 @@
 {% endblock %}
 {% block body %}
 <mainCovid>
-<h1 style="text-align: center">Current total numbers</h1>
-  <div class="visualcovid">
   <form id="countrySearch2" method="POST" autocomplete="off">
     <label style="font-size: 30px;"for="exampleDataList" class="form-label">Search for country</label>
     <input class="form-control" list="datalistOptions" name="country_select" id="exampleDataList" placeholder="Type to search...">
@@ -33,6 +31,20 @@
       {% endfor %}
     </datalist>
   </form>
+  <form id="world-value-select" method="POST" >
+    <select id="value-dropdown" class="form-select" name="world-value-select"aria-label=".form-select-lg example">
+      <option value="NewConfirmed">Newly Confirmed Cases</option>
+      <option value="TotalConfirmed">Total Confirmed Cases</option>
+      <option value="NewDeaths">New Deaths</option>
+      <option value="TotalDeaths">Total Deaths</option>
+      <option value="NewRecovered">Newly Recovered Cases</option>
+      <option value="TotalRecovered">Total Recovered Cases</option>
+    </select>
+    <input id="world-days-select" name="world-days-select"class="form-control" type="text" placeholder="Day Interval (max 17)">
+    <button class="btn btn-primary" type="submit">Update Graph</button>
+  </form>
+<h1 style="text-align: center">Current total numbers</h1>
+  <div class="visualcovid">
       <div id="country">
           <img src="/static/world.png">
           <h5>Country: World</h5>
@@ -44,9 +56,31 @@
 
       {% endfor %}
   </div>
+  <p style="display:none" id="labeltransfer">{{ queried_value }} in the last {{nr_days}} days</p>
+<canvas id="lineChartWorld"></canvas>
 
 
-
+<script defer>
+  var ctx = document.getElementById("lineChartWorld").getContext("2d");
+  var linechart = new Chart(ctx, {
+          type: "line",
+          data: {
+                  labels: {{ dates_world | safe }},
+                  datasets: [
+                          {
+                                  label: document.getElementById("labeltransfer").innerHTML,
+                                  data: {{ values_world | safe }},
+                                  fill: false,
+                                  borderColor: "rgb(75, 192, 192)",
+                                  lineTension: 0.1 
+                          }
+                          ]
+                },
+          options: {
+                  responsive: false
+                }
+        });
+</script>
 
 
 </mainCovid>

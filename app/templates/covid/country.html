@@ -42,11 +42,10 @@
     </datalist>
     </form>
       <div id="country">
-          <img src="/static/world.png">
-          <h5>Country: {{country}}</h5>
+          <h5>Country: <span id="countryname">{{country}}</span></h5>
       </div>
       {% for stat, value in cases.items() %}
-        <div id="{{stat}}">{{stat}}:
+      <div id="{{stat}}"><h5>{{stat}}:</h5>
         <h5>{{value}}</h5>
         </div>
 
