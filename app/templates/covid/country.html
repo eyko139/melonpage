@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body %}
 <maincovid>
-<h1 id="countryh1">{{ country }}</h1>
+<h1 id="countryh1">{{ country | capitalize }}</h1>
 <!-- MOBILE -->
 
 <form id="mobiledate" method="Post" autocomplete="off">
@@ -48,7 +48,7 @@
       <option value="Deaths">Total Deaths</option>
       <option value="Confirmed">Confirmed Cases</option>
     </select>
-    <input id="country-days-select" name="country-days-select"class="form-control" type="text" placeholder="Day Interval">
+    <input id="country-days-select" name="country-days-select"class="form-control" type="number" placeholder="Day Interval">
     <button class="btn btn-primary" type="submit">Update Graph</button>
   </form>
   <div class="visualcovid">

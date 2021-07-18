@@ -6,15 +6,18 @@ covid_obj = Covid()
 
 @covid.route("/stats", methods=["GET", "POST"])
 def stats():
-    summary_cases, current_date = covid_obj.get_summary_cases()
-    countries_avail = covid_obj.get_countries()
-    dates_world, values_world = covid_obj.get_days_value_world(7, "TotalConfirmed")
-    queried_value = "Newly Confirmed Cases"
-    nr_days = 7
+    try:
+        summary_cases, current_date = covid_obj.get_summary_cases()
+        countries_avail = covid_obj.get_countries()
+        dates_world, values_world = covid_obj.get_days_value_world(7, "TotalConfirmed")
+        queried_value = "Newly Confirmed Cases"
+        nr_days = 7
+    except:
+        flash("API is caching new values, come back later.", "error")
+        redirect(url_for("main.index"))
 
     if request.method == "POST":
         if "country_select" in request.form:
-            try:
                 selected_country = request.form["country_select"]
                 country_date = covid_obj.get_status_of_one(selected_country)
 
@@ -22,7 +25,6 @@ def stats():
                                     country_name=selected_country,
                                     date=country_date["Date"]
                                 ))
-            except:
                 selected_country = request.form["country_select"]
                 flash("Sorry no data for " + selected_country, "error")
                 return redirect(url_for("covid.stats"))

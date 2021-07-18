@@ -39,7 +39,7 @@ class Covid:
         return dict(sorted(self.countries.items(), key = lambda x: x[1]))
 
     def get_status_of_one(self , slug_name) -> dict:
-        res = requests.get(self.status_url.format(slug_name)).json()[-1]
+        res = requests.get(self.status_url.format(slug_name.lower())).json()[-1]
 
         self.cases = {}
 
@@ -50,14 +50,14 @@ class Covid:
 
     #Creates nested dict with LAST 7 days as keys for queried country 
     def get_country_seven_days(self , slug_name) -> dict:
-        res = requests.get(self.status_url.format(slug_name)).json()[-7:]
+        res = requests.get(self.status_url.format(slug_name.lower())).json()[-7:]
         dates = {}
         for i,date in enumerate(res):
             dates[res[i]["Date"]] = {"Confirmed":res[i]["Confirmed"], "Deaths":res[i]["Deaths"], "Recovered":res[i]["Recovered"], "Active":res[i]["Active"]}
 
         return dates
     def get_days_value(self, slug_name, days, value) ->dict:
-        res = requests.get(self.status_url.format(slug_name)).json()[-int(days):]
+        res = requests.get(self.status_url.format(slug_name.lower())).json()[-int(days):]
         dates = []
         active = []
         for i,date in enumerate(res):
@@ -67,8 +67,8 @@ class Covid:
         return dates, active
     #datetime objects needs to be sorted !
     def get_days_value_world(self, days, value) ->dict:
-        res = requests.get(self.world_url).json()[-int(days):]
-        res_sorted = sorted(res, key=lambda k: k["Date"])
+        res = requests.get(self.world_url).json()
+        res_sorted = sorted(res, key=lambda k: k["Date"])[-int(days):]
         dates_world = []
         value_world = []
         for i in range(0, len(res_sorted)):
@@ -84,7 +84,7 @@ class Covid:
    #Finding the json entry of the corresponding country on the requested time
    #and prettifying the timestamp into datetime obj
     def get_country_on_date(self, slug_name, date):
-        res = requests.get(self.status_url.format(slug_name)).json()
+        res = requests.get(self.status_url.format(slug_name.lower())).json()
         for obs in res:
             if obs["Date"] == date:
                 date_found = obs
@@ -98,7 +98,7 @@ class Covid:
                 
         return self.cases
     def get_country_dates(self, slug_name):
-        res = requests.get(self.status_url.format(slug_name)).json()
+        res = requests.get(self.status_url.format(slug_name.lower())).json()
         date_list = []
         for obs in res:
             #cant prettyfiy date here, gets parsed to the view fucntion
