@@ -3,10 +3,12 @@ console.log("what up");
 
 if (window.matchMedia("(max-width: 600px)").matches) {
   let header = document.querySelector("h1");
-  document.querySelector(".btn").innerHTML = "Update";
+  document.querySelector(".btn").innerHTML = "Display";
   const breaks = document.querySelectorAll("br");
   breaks.forEach(element=> {
     element.remove()});
+  const countrydiv = document.getElementById("countrycountry");
+  countrydiv.style.display = "none";
 }
 function picInsert(path) {
     return `<img src="/static/flags/${path}">`
@@ -19,6 +21,8 @@ deaths.insertAdjacentHTML("afterbegin", picInsert("death.png"));
 const countryname = document.getElementById("countryname").innerHTML;
 let header = document.querySelector("h1");
 header.insertAdjacentHTML("afterbegin", picInsert(countryname.toLowerCase()));
+const countrydiv = document.getElementById("countrycountry");
+countrydiv.insertAdjacentHTML("afterbegin", picInsert(countryname.toLowerCase()));
 
 date_panel = document.getElementById("Date-h")
 temp_inner = date_panel.innerHTML

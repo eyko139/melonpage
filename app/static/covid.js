@@ -12,7 +12,7 @@ if (window.matchMedia("(max-width: 600px)").matches) {
   //container.style.display = "block";
   //table2.style.display="none";
   const button = document.getElementById("update-button");
-  button.innerHTML = "Update";
+  button.innerHTML = "Display";
 }
 
 //document.body.onload = addElement;

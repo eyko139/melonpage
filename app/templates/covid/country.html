@@ -28,8 +28,8 @@
     <button class="btn btn-primary" type="submit">Update Graph</button>
   </form>
   <div class="visualcovid">
-      <div style="display:none"id="countrycountry">
-          <h5 style="display:none">Country: <span id="countryname">{{country}}</span></h5>
+      <div id="countrycountry">
+          <h5 >Country: <span id="countryname">{{country}}</span></h5>
       </div>
       {% for stat, value in cases.items() %}
       <div id="{{stat}}">
