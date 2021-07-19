@@ -50,8 +50,9 @@
           <h5>Country: World</h5>
       </div>
       {% for stat, value in cases.items() %}
-        <div id="{{stat}}">{{stat}}:
-        <h5>{{value}}</h5>
+        <div id="{{stat}}">
+          <cardheader>{{stat}}:</cardheader>
+          <span>{{value}}</span>
         </div>
       {% endfor %}
         <div id="current_date">

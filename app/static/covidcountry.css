@@ -50,6 +50,9 @@ h1 img {
 }
 #country h5{
 }
+cardheader {
+  font-weight: 600;
+}
 #lineChartCountry {
     grid-area: 3 / 1/span 2/span 7;
     box-shadow: rgb(0 0 0/ 35%) 0px 5px 15px;
@@ -65,25 +68,34 @@ h1 img {
     }
     .visualcovid {
         grid-area: 5 / 1 / span 1 /span 1;
-        grid-template: 100px 150px repeat(6, 75px)/ 100%;
+        grid-template: 100px 150px repeat(6, 75px)/ 320px;
         margin: 0px;
-        max-width: 340px;
+        max-width: 100%;
     }
     .visualcovid > div {
       max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
     }
     #Date {
       grid-area: 1/1/span 1/span 1;
+      justify-content: space-around;
     }
     #Active {
         grid-area:2/1/span 1/span 1;
     }
     #Deaths{
-        grid-area:4/1/span 1/span 1;
+        grid-area:3/1/span 1/span 1;
     }
     #Recovered{
         grid-area:5/1/span 1/span 1;
+        justify-content: space-around;
     }
+    #Confirmed {
+      grid-area: 4/1/span 1/span 1;
+        justify-content: space-around;
+      }
     .visualcovid > #country {
         display: none;
         grid-area: 2/1/span 1 / span 1;
@@ -121,6 +133,9 @@ h1 img {
     }
     h1 img {
       height: 100%;
+    }
+    #Active img {
+      height: 50%;
     }
 
 
