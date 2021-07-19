@@ -2,25 +2,23 @@ console.log("what up");
 
 
 if (window.matchMedia("(max-width: 600px)").matches) {
-    const timesearch = document.getElementById("mobiledate");
-    timesearch.style.display = "block";
-  const table2 = document.querySelector("#countryTable2");
-  table2.style.display = "none";
-  const container = document.querySelector(".statcontainer");
-  container.style.display = "block";
-  header = document.querySelector("h1");
-  header.style.display = "none";
+  let header = document.querySelector("h1");
+  document.querySelector(".btn").innerHTML = "Update";
+  const breaks = document.querySelectorAll("br");
+  breaks.forEach(element=> {
+    element.remove()});
 }
 function picInsert(path) {
     return `<img src="/static/flags/${path}">`
 }
+//Inserting flag pics
 const active = document.getElementById("Active")
 active.insertAdjacentHTML("afterbegin", picInsert("sick.png"))
 const deaths = document.getElementById("Deaths")
 deaths.insertAdjacentHTML("afterbegin", picInsert("death.png"));
 const countryname = document.getElementById("countryname").innerHTML;
-const country = document.getElementById("country");
-country.insertAdjacentHTML("afterbegin", picInsert(countryname.toLowerCase()));
+let header = document.querySelector("h1");
+header.insertAdjacentHTML("afterbegin", picInsert(countryname.toLowerCase()));
 
 date_panel = document.getElementById("Date-h")
 temp_inner = date_panel.innerHTML

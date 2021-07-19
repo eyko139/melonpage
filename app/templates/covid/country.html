@@ -7,30 +7,6 @@
 {% block body %}
 <maincovid>
 <h1 id="countryh1">{{ country | capitalize }}</h1>
-<!-- MOBILE -->
-
-<form id="mobiledate" method="Post" autocomplete="off">
-      <label for="exampleDataList" class="form-label">Search for date</label>
-        <input class="form-control" list="datalistOptions" name="country_date" id="exampleDataList" placeholder="Type to search...">
-        <datalist id="datalistOptions">
-          {% for date in dates %}
-          <option value="{{ date }}">
-          {% endfor %}
-    </datalist>
-    </form>
-  <div class="statcontainer">
-    <table class="table caption-top table-striped table-hover" id="covidtable">
-      <caption>{{country}}</caption>
-        <tbody>
-          {% for case, value in cases.items() %}
-          <tr>
-            <th scope="row">{{case}}</th>
-            <td>{{value}}</td>
-          </tr>
-          {% endfor %}
-    </table>
-  </div>
-
   <!-- DESKTOP -->
     <form id="datesearch" method="Post" autocomplete="off">
       <label for="exampleDataList" class="form-label">Search for date</label>
@@ -52,8 +28,8 @@
     <button class="btn btn-primary" type="submit">Update Graph</button>
   </form>
   <div class="visualcovid">
-      <div id="country">
-          <h5>Country: <span id="countryname">{{country}}</span></h5>
+      <div style="display:none"id="countrycountry">
+          <h5 style="display:none">Country: <span id="countryname">{{country}}</span></h5>
       </div>
       {% for stat, value in cases.items() %}
       <div id="{{stat}}">

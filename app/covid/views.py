@@ -13,8 +13,8 @@ def stats():
         queried_value = "Newly Confirmed Cases"
         nr_days = 7
     except:
-        flash("API is caching new values, come back later.", "error")
-        redirect(url_for("main.index"))
+        flash("API is caching new values, come back later.")
+        return redirect(url_for("main.index"))
 
     if request.method == "POST":
         if "country_select" in request.form:

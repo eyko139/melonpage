@@ -23,7 +23,7 @@
 {% block body %}
 <mainCovid>
   <form id="countrySearch2" method="POST" autocomplete="off">
-    <label style="font-size: 30px;"for="exampleDataList" class="form-label">Search for country</label>
+    <label for="exampleDataList" class="form-label">Search for country</label>
     <input class="form-control" list="datalistOptions" name="country_select" id="exampleDataList" placeholder="Type to search...">
     <datalist id="datalistOptions">
       {% for country in country %}
@@ -41,9 +41,9 @@
       <option value="TotalRecovered">Total Recovered Cases</option>
     </select>
     <input id="world-days-select" name="world-days-select"class="form-control" type="number" placeholder="Day Interval (max 17)">
-    <button class="btn btn-primary" type="submit">Update Graph</button>
+    <button id="update-button" class="btn btn-primary" type="submit">Update Graph</button>
   </form>
-<h1 style="text-align: center">Current total numbers</h1>
+<h1 style="text-align: center">Worlds total numbers</h1>
   <div class="visualcovid">
       <div id="country">
           <img src="/static/world.png">

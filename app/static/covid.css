@@ -116,18 +116,30 @@ tr {
     grid-area: 2 / 9 / span 1/span 3;
     margin: 20px;
 }
+#countrySearch2 label {
+  font-family: Roboto;
+  font-size: 1.5rem;
+}
 .form-label {
     text-align: center;
 }
 @media only screen and (max-width: 600px) {
     maincovid {
-        grid-template: 1000px/1fr;
+        grid-template: 50px 100px 220px 80px 400px/1fr;
+        justify-items: center;
     }
     .visualcovid {
-        grid-area: 1 / 1 / span 1 /span 1;
-        grid-template: 100px 150px repeat(6, 75px)/ 1fr;
-        width: 100%;
+        grid-area: 5 / 1 / span 1 /span 1;
+        grid-template: 100px 150px repeat(6, 75px)/ 100%;
         margin: 0px;
+        max-width: 340px;
+    }
+    .visualcovid > div {
+      max-width: 100%;
+      justify-content: space-around;
+    }
+    #current_date {
+      grid-area: 1/1/span 1/span 1;
     }
     #New\ Confirmed {
         grid-area:3/1/span 1/span 1;
@@ -156,15 +168,35 @@ tr {
         max-width:20%;
     }
     #countrySearch2 {
-        margin: 5px;
+        margin: 0 10px;
         display:flex;
         flex-direction:column;
         align-items: center;
-        grid-area: 1 / 1 / span 1/span 1;
+        grid-area: 4 / 1 / span 1/span 1;
+        width: 95%;
+    }
+    #countrySearch2 > label {
+      font-size: 1.5rem;
     }
     maincovid h1 {
-        display: none
+      font-size: 1.5rem;
+      grid-area: 1/1/span 1/span 1;
     }
+    maincovid #lineChartWorld {
+      grid-area: 3/1/span 1/span 1;
+      margin: 0;
+    }
+    #world-value-select {
+      grid-area: 1/1/span 1/span 1;
+    }
+    maincovid .btn {
+      max-width: 20%;
+      max-height: 40%;
+    }
+    maincovid > #lineChartCountry {
+      margin: 0;
+    }
+
 
 }
 #lineChartWorld {
@@ -190,3 +222,6 @@ tr {
   max-width: 50%;
 }
 
+option {
+  font-family: Roboto;
+}

@@ -8,9 +8,11 @@ const container = document.querySelector(".statcontainer");
 const table2 = document.querySelector("#countryTable2");
 
 if (window.matchMedia("(max-width: 600px)").matches) {
-  table.style.display="none";
-  container.style.display = "block";
-  table2.style.display="none";
+  //table.style.display="none";
+  //container.style.display = "block";
+  //table2.style.display="none";
+  const button = document.getElementById("update-button");
+  button.innerHTML = "Update";
 }
 
 //document.body.onload = addElement;
