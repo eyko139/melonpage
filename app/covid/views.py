@@ -18,6 +18,7 @@ def stats():
 
     if request.method == "POST":
         if "country_select" in request.form:
+            try:
                 selected_country = request.form["country_select"]
                 country_date = covid_obj.get_status_of_one(selected_country)
 
@@ -26,6 +27,7 @@ def stats():
                                     date=country_date["Date"]
                                 ))
                 selected_country = request.form["country_select"]
+            except:
                 flash("Sorry no data for " + selected_country, "error")
                 return redirect(url_for("covid.stats"))
         if "world-value-select" in request.form:
