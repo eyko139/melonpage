@@ -13,6 +13,8 @@ if (window.matchMedia("(max-width: 600px)").matches) {
   //table2.style.display="none";
   const button = document.getElementById("update-button");
   button.innerHTML = "Display";
+  const worlddiv = document.getElementById("country");
+  worlddiv.style.display = "none";
 }
 
 //document.body.onload = addElement;
