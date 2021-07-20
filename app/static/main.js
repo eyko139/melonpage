@@ -50,3 +50,8 @@ const todoLeaverHandler = () => {
 
 todox.addEventListener("click", todoHoverHandler);
 todox.addEventListener("mouseleave", todoLeaverHandler);
+
+
+//Setting the correct dropdwon width
+//
+
